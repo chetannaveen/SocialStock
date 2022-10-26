@@ -144,11 +144,11 @@ Stock price metric data
 
 ## **Scrum Roles**
 
-- DevOps : Tej
+- DevOps : Sai teja Boga
 - Product Owner/Developer : Chetan Naveen Vadde
 - Scrum Master: Lokesh Chandra Gorrepati
 - Frontend Developer: Surya Siva Pranav Jakka
-- Integration Developer: Sai Teja
+- Integration Developer: Sai Teja Golla
 
 ## **Weekly Meeting**
 
