@@ -1,6 +1,6 @@
 # SocialStock : Design Document
 
-Team Members: _**Chetan Naveen Vadde, Lokesh Chandra Gorrepati, Surya Siva Pranav Jakka, Sai Teja Golla, Tej**_
+Team Members: _Chetan Naveen Vadde, Lokesh Chandra Gorrepati, Surya Siva Pranav Jakka, Sai Teja Golla, Sai Teja Boga_
 
 ## Logo :
 
