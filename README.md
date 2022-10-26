@@ -153,3 +153,7 @@ Stock price metric data
 ## **Weekly Meeting**
 
 Saturday at 4 PM on Teams.
+
+## **Github Projects**
+
+https://github.com/users/chetannaveen/projects/1
