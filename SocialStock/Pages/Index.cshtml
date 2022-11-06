@@ -4,7 +4,15 @@
     ViewData["Title"] = "Home page";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
-</div>
+<section class="cntr_pg">
+
+    <h1 class="animate-charcter display-1"> SocialStock</h1>
+
+
+    <form action="/DashBoard" method="get" name="searchquery">
+        <input type="text" id="CompanySymbol" name="CompanySymbol" class="form-control rounded-pill" placeholder="Company Symbol..." />
+        <div class="d-flex justify-content-center" style="padding-top: 20px;">
+            <input class="btn btn-outline-light" type="submit" value="Search" name="submit">
+        </div>
+    </form>
+</section>
