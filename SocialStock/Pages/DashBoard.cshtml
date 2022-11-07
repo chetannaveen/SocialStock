@@ -2,3 +2,20 @@
 @model SocialStock.Pages.DashBoardModel
 @{
 }
+<header class="py-3 mb-3 border-bottom sticky-top gradientHeader">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-2">
+                <a href="/" class="d-flex align-items-center link-dark text-decoration-none" aria-expanded="false">
+                    <img src="~/SocialStocklogo.jpg" style="max-height:100%; max-width:100%;" class="rounded" />
+                </a>
+            </div>
+
+            <div class="d-flex align-items-center col-10">
+                <form action="/DashBoard" method="get" class="w-100 me-3">
+                    <input type="text" input id="CompanySymbol" name="CompanySymbol" class="form-control" placeholder="Search..." aria-label="Search">
+                </form>
+            </div>
+        </div>
+    </div>
+</header>
