@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using SocialStock.BasicCompanyInfo;
 using SocialStock.Financials;
 using SocialStock.Response;
+using SocialStock.Tweets;
 
 namespace SocialStock.Pages
 {
@@ -23,7 +24,24 @@ namespace SocialStock.Pages
             SSResponse.CompanySymbol = CompanySymbol;
             await GetStockMetrics(CompanySymbol);
             await GetCompanyProfile(CompanySymbol);
+            await GetTrendingTweets(CompanySymbol);
 
+        }
+        private async Task GetTrendingTweets(string CompanySymbol)
+        {
+            HttpResponseMessage responseTweets = await client.GetAsync("https://api.social-searcher.com/v2/trends?q=" + CompanySymbol + "&key=84115b4028964b26ea46f08761beb279&network=twitter");
+            if (responseTweets.IsSuccessStatusCode)
+            {
+                string tweetsResult = await responseTweets.Content.ReadAsStringAsync();
+                TrendingTweets trendingTweets = TrendingTweets.FromJson(tweetsResult);
+                SSResponse.Tweets = trendingTweets;
+                if (trendingTweets.Posts.Length > 16)
+                {
+                    SSResponse.Tweets.Posts = trendingTweets.Posts[1..10];
+                }
+
+
+            }
         }
         private async Task GetCompanyProfile(string CompanySymbol)
         {
