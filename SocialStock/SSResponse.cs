@@ -4,7 +4,7 @@ using SocialStock.Financials;
 using SocialStock.InsiderInfo;
 using SocialStock.Tweets;
 
-namespace SocialStock.SSResponse
+namespace SocialStock.Response
 {
     public class SSResponse
     {
