@@ -19,3 +19,95 @@
         </div>
     </div>
 </header>
+<div class="container px-4">
+    <div class="row gx-5" style="padding:10px;">
+        <div class="col">
+            <div class="p-12 border .bg-transparent rounded border border-light" style="padding:10px; padding-bottom: 5px;">
+                <div class="row">
+                    <h5 style="text-align:center; color:white;">Stock price metric data</h5>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <div class="card">
+                            <ul class="list-group list-group-flush">
+
+                                <li class="list-group-item list-group-item-primary">The 10Day Average Trading Volume:  @Html.DisplayFor(model => model.SSResponse.FinHubFinancials.Metric.The10DayAverageTradingVolume)</li>
+
+                                @if (Model.SSResponse.FinHubFinancials.Metric.The13WeekPriceReturnDaily > 0)
+                                {
+                                    <li class="list-group-item list-group-item-success">The 13Week Price Return Daily: @Html.DisplayFor(model => model.SSResponse.FinHubFinancials.Metric.The13WeekPriceReturnDaily)</li>
+                                }
+                                else
+                                {
+                                    <li class="list-group-item list-group-item-danger">The 13Week Price Return Daily: @Html.DisplayFor(model => model.SSResponse.FinHubFinancials.Metric.The13WeekPriceReturnDaily)</li>
+                                }
+                                @if (Model.SSResponse.FinHubFinancials.Metric.The26WeekPriceReturnDaily > 0)
+                                {
+                                    <li class="list-group-item list-group-item-success">The 26Week Price Return Daily: @Html.DisplayFor(model => model.SSResponse.FinHubFinancials.Metric.The13WeekPriceReturnDaily)</li>
+                                }
+                                else
+                                {
+                                    <li class="list-group-item list-group-item-danger">The 26Week Price Return Daily: @Html.DisplayFor(model => model.SSResponse.FinHubFinancials.Metric.The13WeekPriceReturnDaily)</li>
+                                }
+
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="card">
+                            <ul class="list-group list-group-flush">
+                                <li class="list-group-item list-group-item-primary">The 3Month Average Trading Volume: @Html.DisplayFor(model => model.SSResponse.FinHubFinancials.Metric.The3MonthAverageTradingVolume)</li>
+                                <li class="list-group-item list-group-item-primary">The 52Week High: @Html.DisplayFor(model => model.SSResponse.FinHubFinancials.Metric.The52WeekHigh)</li>
+                                <li class="list-group-item list-group-item-primary">The52WeekLow: @Html.DisplayFor(model => model.SSResponse.FinHubFinancials.Metric.The52WeekLow)</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <p style="padding-top:10px; text-align:center;">
+                        <a class="btn btn-primary" data-bs-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
+                            Show More Metrics
+                        </a>
+                    </p>
+                    <div class="collapse" id="collapseExample">
+                        <div class="card">
+                            <div class="row">
+                                <div class="col">
+                                    <div class="card">
+                                        <ul class="list-group list-group-flush">
+                                            <li class="list-group-item list-group-item-primary">The Book Value: @Html.DisplayFor(model => model.SSResponse.FinHubFinancials.Metric.BookValuePerShareAnnual)</li>
+                                            <li class="list-group-item list-group-item-primary">The Price to book: @Html.DisplayFor(model => model.SSResponse.FinHubFinancials.Metric.PbAnnual)</li>
+                                            <li class="list-group-item list-group-item-primary">The PE Ratio: @Html.DisplayFor(model => model.SSResponse.FinHubFinancials.Metric.PeExclExtraAnnual)</li>
+                                            <li class="list-group-item list-group-item-primary">The Asset Turnover Ratio: @Html.DisplayFor(model => model.SSResponse.FinHubFinancials.Metric.AssetTurnoverAnnual)</li>
+                                            <li class="list-group-item list-group-item-primary">The Return on Equity TTM: @Html.DisplayFor(model => model.SSResponse.FinHubFinancials.Metric.RoeTtm)</li>
+                                            <li class="list-group-item list-group-item-primary">The Return on Assets TTM: @Html.DisplayFor(model => model.SSResponse.FinHubFinancials.Metric.RoaeTtm)</li>
+                                            <li class="list-group-item list-group-item-primary">The Current Ratio Annual: @Html.DisplayFor(model => model.SSResponse.FinHubFinancials.Metric.CurrentRatioAnnual)</li>
+                                            <li class="list-group-item list-group-item-primary">The Return on Investment : @Html.DisplayFor(model => model.SSResponse.FinHubFinancials.Metric.RoiAnnual)</li>
+                                            <li class="list-group-item list-group-item-primary">The 5 Yr EPS Growth: @Html.DisplayFor(model => model.SSResponse.FinHubFinancials.Metric.EpsGrowth5Y)</li>
+                                            <li class="list-group-item list-group-item-primary">The Revenue Growth for 5 Yr : @Html.DisplayFor(model => model.SSResponse.FinHubFinancials.Metric.RevenueGrowth5Y)</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="col">
+                                    <div class="card">
+                                        <ul class="list-group list-group-flush">
+                                            <li class="list-group-item list-group-item-primary">The Price to Sales Annual: @Html.DisplayFor(model => model.SSResponse.FinHubFinancials.Metric.PsAnnual)</li>
+                                            <li class="list-group-item list-group-item-primary">The Dividend Yield TTM: @Html.DisplayFor(model => model.SSResponse.FinHubFinancials.Metric.CurrentDividendYieldTtm)</li>
+                                            <li class="list-group-item list-group-item-primary">The Average Dividend Yield 5Yr: @Html.DisplayFor(model => model.SSResponse.FinHubFinancials.Metric.DividendYield5Y)</li>
+                                            <li class="list-group-item list-group-item-primary">The EV to Free Cash Flow: @Html.DisplayFor(model => model.SSResponse.FinHubFinancials.Metric.CurrentEvFreeCashFlowAnnual)</li>
+                                            <li class="list-group-item list-group-item-primary">The Inventory Turnover ratio: @Html.DisplayFor(model => model.SSResponse.FinHubFinancials.Metric.InventoryTurnoverAnnual)</li>
+                                            <li class="list-group-item list-group-item-primary">The Receivable Turnover: @Html.DisplayFor(model => model.SSResponse.FinHubFinancials.Metric.ReceivablesTurnoverAnnual)</li>
+                                            <li class="list-group-item list-group-item-primary">The Debt to Equity Ratio in percentage: @Html.DisplayFor(model => model.SSResponse.FinHubFinancials.Metric.TotalDebtTotalEquityAnnual)</li>
+                                            <li class="list-group-item list-group-item-primary">The Gross Margin: @Html.DisplayFor(model => model.SSResponse.FinHubFinancials.Metric.GrossMarginAnnual)</li>
+                                            <li class="list-group-item list-group-item-primary">The Operating Margin annual: @Html.DisplayFor(model => model.SSResponse.FinHubFinancials.Metric.OperatingMarginAnnual)</li>
+                                            <li class="list-group-item list-group-item-primary">The Operating margin 5 Yr @Html.DisplayFor(model => model.SSResponse.FinHubFinancials.Metric.OperatingMargin5Y)</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
