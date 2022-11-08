@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using SocialStock.BasicCompanyInfo;
 using SocialStock.Financials;
 using SocialStock.Response;
 
@@ -21,7 +22,26 @@ namespace SocialStock.Pages
         {
             SSResponse.CompanySymbol = CompanySymbol;
             await GetStockMetrics(CompanySymbol);
+            await GetCompanyProfile(CompanySymbol);
 
+        }
+        private async Task GetCompanyProfile(string CompanySymbol)
+        {
+            HttpResponseMessage responseCompanyData = await client.GetAsync("https://finnhub.io/api/v1/stock/profile2?symbol=" + CompanySymbol + "&token=cd7l922ad3iasq2munj0cd7l922ad3iasq2munjg");
+            if (responseCompanyData.IsSuccessStatusCode)
+            {
+                string companyDataResult = await responseCompanyData.Content.ReadAsStringAsync();
+                if (companyDataResult != "{}")
+                {
+                    SSResponse.CompanyData = CompanyData.FromJson(companyDataResult);
+                }
+                else
+                {
+                    SSResponse.IncorrectCompanySymbol = true;
+                }
+
+
+            }
         }
         private async Task GetStockMetrics(string CompanySymbol)
         {
