@@ -1,4 +1,4 @@
-﻿namespace SocialStock.Sentiment
+﻿namespace SocialStock.FhSentiment
 {
     using System;
     using System.Collections.Generic;
@@ -45,12 +45,12 @@
 
     public partial class FinHubSentiment
     {
-        public static FinHubSentiment FromJson(string json) => JsonConvert.DeserializeObject<FinHubSentiment>(json, SocialStock.Sentiment.Converter.Settings);
+        public static FinHubSentiment FromJson(string json) => JsonConvert.DeserializeObject<FinHubSentiment>(json, SocialStock.FhSentiment.Converter.Settings);
     }
 
     public static class Serialize
     {
-        public static string ToJson(this FinHubSentiment self) => JsonConvert.SerializeObject(self, SocialStock.Sentiment.Converter.Settings);
+        public static string ToJson(this FinHubSentiment self) => JsonConvert.SerializeObject(self, SocialStock.FhSentiment.Converter.Settings);
     }
 
     internal static class Converter
