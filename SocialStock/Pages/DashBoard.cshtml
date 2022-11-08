@@ -20,6 +20,37 @@
     </div>
 </header>
 <div class="container px-4">
+    <div class="row gx-5" style="padding-top:10px; padding-bottom:10px;">
+        <img src="@Model.SSResponse.CompanyData.Logo" style="max-height:10%; max-width:10%;  margin-left: auto;margin-right: auto;" />
+        <h3 style=" text-align:center; color:white;">@Model.SSResponse.CompanyData.Name</h3>
+    </div>
+    
+    <div class="row gx-5" style="padding:10px;">
+        <div class="col">
+            <div class="p-6 border .bg-transparent rounded border border-light" style="padding: 10px;">
+
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item list-group-item-primary">Name:  @Model.SSResponse.CompanyData.Name</li>
+                    <li class="list-group-item list-group-item-primary">Industry:  @Model.SSResponse.CompanyData.FinnhubIndustry</li>
+                    <li class="list-group-item list-group-item-primary">Country:  @Model.SSResponse.CompanyData.Country</li>
+                    <li class="list-group-item list-group-item-primary">Currency:  @Model.SSResponse.CompanyData.Currency</li>
+                    <li class="list-group-item list-group-item-primary">Exchnage:  @Model.SSResponse.CompanyData.Exchange</li>
+                </ul>
+            </div>
+        </div>
+        <div class="col">
+            <div class="p-6 border .bg-transparent rounded border border-light" style="padding: 10px;">
+
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item list-group-item-primary">Website:  <a href="@Model.SSResponse.CompanyData.Weburl">@Model.SSResponse.CompanyData.Name</a></li>
+                    <li class="list-group-item list-group-item-primary">IPO:  @Model.SSResponse.CompanyData.Ipo</li>
+                    <li class="list-group-item list-group-item-primary">Market Capitilization:  @Model.SSResponse.CompanyData.MarketCapitalization</li>
+                    <li class="list-group-item list-group-item-primary">Share Outstanding:  @Model.SSResponse.CompanyData.ShareOutstanding</li>
+                    <li class="list-group-item list-group-item-primary">Ticker:  @Model.SSResponse.CompanyData.Ticker</li>
+                </ul>
+            </div>
+        </div>
+    </div>
     <div class="row gx-5" style="padding:10px;">
         <div class="col">
             <div class="p-12 border .bg-transparent rounded border border-light" style="padding:10px; padding-bottom: 5px;">
