@@ -4,6 +4,7 @@ using SocialStock.BasicCompanyInfo;
 using SocialStock.CompanyNews;
 using SocialStock.FhSentiment;
 using SocialStock.Financials;
+using SocialStock.InsiderInfo;
 using SocialStock.Response;
 using SocialStock.Tweets;
 
@@ -29,6 +30,47 @@ namespace SocialStock.Pages
             await GetCompanyProfile(CompanySymbol);
             await GetTrendingTweets(CompanySymbol);
             await GetCompanyNews(CompanySymbol);
+            await GetInSiderSentimentCharts(CompanySymbol);
+
+        }
+        private async Task GetInSiderSentimentCharts(string CompanySymbol)
+        {
+            int year = DateTime.Now.AddYears(-1).Year;
+            DateTime FromDate = new DateTime(year, 1, 1);
+
+            string url = "https://finnhub.io/api/v1/stock/insider-sentiment?symbol=" + CompanySymbol +
+                "&from=" + FromDate.ToString("yyyy-MM-dd") + "&to=" + DateTime.Now.ToString("yyyy-MM-dd")
+                + "&token=cd7l922ad3iasq2munj0cd7l922ad3iasq2munjg";
+            HttpResponseMessage responseInside = await client.GetAsync(url);
+            if (responseInside.IsSuccessStatusCode)
+            {
+                string insiderSentimentResult = await responseInside.Content.ReadAsStringAsync();
+                SSResponse.InsiderSentiment = InsiderSentiment.FromJson(insiderSentimentResult);
+                CreateCharts(SSResponse.InsiderSentiment);
+
+            }
+        }
+        private void CreateCharts(InsiderSentiment insiderSentiment)
+        {
+            List<string> labels = new List<string>();
+            List<string> dataChange = new List<string>();
+            List<string> dataMSPR = new List<string>();
+            if (insiderSentiment.Data.Length != 0)
+            {
+                foreach (Datum datum in insiderSentiment.Data)
+                {
+                    labels.Add(datum.Year.ToString() + "-" + datum.Month.ToString());
+
+                    dataChange.Add(datum.Change.ToString());
+                    dataMSPR.Add(datum.Mspr.ToString());
+                }
+                string labelString = string.Join(",", labels);
+                string dataChangeString = string.Join(",", dataChange);
+                string dataMSPRString = string.Join(",", dataMSPR);
+                SSResponse.InsiderChangeGraph = "https://quickchart.io/chart/render/zm-e57c31a5-9ff5-40f8-a807-e938f0c840ac?" + "data1=" + dataChangeString + "&labels=" + labelString;
+                SSResponse.InsiderMsprGraph = "https://quickchart.io/chart/render/zm-cc269a4a-32fa-4c84-a7be-cd610ee5c972?" + "data1=" + dataMSPRString + "&labels=" + labelString;
+
+            }
 
         }
         private async Task GetSocialMediaSentiment(string CompanySymbol)
