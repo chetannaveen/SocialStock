@@ -5,9 +5,9 @@
 <header class="py-3 mb-3 border-bottom sticky-top gradientHeader">
     <div class="container-fluid">
         <div class="row">
-            <div class="col-2">
-                <a href="/" class="d-flex align-items-center link-dark text-decoration-none" aria-expanded="false">
-                    <img src="~/SocialStockLogo.png" style="max-height:100%; max-width:100%;" class="rounded" />
+            <div class="col-2 px-0">
+                <a href="/" class="link-dark text-decoration-none" aria-expanded="false">
+                    <img src="~/SocialStockLogo.png" class="img-fluid" />
                 </a>
             </div>
 
@@ -19,310 +19,334 @@
         </div>
     </div>
 </header>
-<div class="container px-4">
-    <div class="row gx-5" style="padding-top:10px; padding-bottom:10px;">
-        <img src="@Model.SSResponse.CompanyData.Logo" style="max-height:10%; max-width:10%;  margin-left: auto;margin-right: auto;" />
-        <h3 style=" text-align:center; color:white;">@Model.SSResponse.CompanyData.Name</h3>
-    </div>
+@if (Model.SSResponse.IncorrectCompanySymbol == false)
+{
 
-    <div class="row gx-5" style="padding:10px;">
-        <div class="col">
-            <div class="p-6 border .bg-transparent rounded border border-light" style="padding: 10px;">
-
-                <ul class="list-group list-group-flush">
-                    <li class="list-group-item list-group-item-primary">Name:  @Model.SSResponse.CompanyData.Name</li>
-                    <li class="list-group-item list-group-item-primary">Industry:  @Model.SSResponse.CompanyData.FinnhubIndustry</li>
-                    <li class="list-group-item list-group-item-primary">Country:  @Model.SSResponse.CompanyData.Country</li>
-                    <li class="list-group-item list-group-item-primary">Currency:  @Model.SSResponse.CompanyData.Currency</li>
-                    <li class="list-group-item list-group-item-primary">Exchnage:  @Model.SSResponse.CompanyData.Exchange</li>
-                </ul>
-            </div>
-        </div>
-        <div class="col">
-            <div class="p-6 border .bg-transparent rounded border border-light" style="padding: 10px;">
-
-                <ul class="list-group list-group-flush">
-                    <li class="list-group-item list-group-item-primary">Website:  <a href="@Model.SSResponse.CompanyData.Weburl">@Model.SSResponse.CompanyData.Name</a></li>
-                    <li class="list-group-item list-group-item-primary">IPO:  @Model.SSResponse.CompanyData.Ipo</li>
-                    <li class="list-group-item list-group-item-primary">Market Capitilization:  @Model.SSResponse.CompanyData.MarketCapitalization</li>
-                    <li class="list-group-item list-group-item-primary">Share Outstanding:  @Model.SSResponse.CompanyData.ShareOutstanding</li>
-                    <li class="list-group-item list-group-item-primary">Ticker:  @Model.SSResponse.CompanyData.Ticker</li>
-                </ul>
-            </div>
-        </div>
-    </div>
-    <div class="row gx-5" style="padding:10px;">
-        <div class="col">
-            <div class="p-12 border .bg-transparent rounded border border-light" style="padding:10px; padding-bottom: 5px;">
-                <div class="row">
-                    <h5 style="text-align:center; color:white;">Stock price metric data</h5>
-                </div>
-                <div class="row">
-                    <div class="col">
-                        <div class="card">
-                            <ul class="list-group list-group-flush">
-
-                                <li class="list-group-item list-group-item-primary">The 10Day Average Trading Volume:  @Html.DisplayFor(model => model.SSResponse.FinHubFinancials.Metric.The10DayAverageTradingVolume)</li>
-
-                                @if (Model.SSResponse.FinHubFinancials.Metric.The13WeekPriceReturnDaily > 0)
-                                {
-                                    <li class="list-group-item list-group-item-success">The 13Week Price Return Daily: @Html.DisplayFor(model => model.SSResponse.FinHubFinancials.Metric.The13WeekPriceReturnDaily)</li>
-                                }
-                                else
-                                {
-                                    <li class="list-group-item list-group-item-danger">The 13Week Price Return Daily: @Html.DisplayFor(model => model.SSResponse.FinHubFinancials.Metric.The13WeekPriceReturnDaily)</li>
-                                }
-                                @if (Model.SSResponse.FinHubFinancials.Metric.The26WeekPriceReturnDaily > 0)
-                                {
-                                    <li class="list-group-item list-group-item-success">The 26Week Price Return Daily: @Html.DisplayFor(model => model.SSResponse.FinHubFinancials.Metric.The13WeekPriceReturnDaily)</li>
-                                }
-                                else
-                                {
-                                    <li class="list-group-item list-group-item-danger">The 26Week Price Return Daily: @Html.DisplayFor(model => model.SSResponse.FinHubFinancials.Metric.The13WeekPriceReturnDaily)</li>
-                                }
-
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="col">
-                        <div class="card">
-                            <ul class="list-group list-group-flush">
-                                <li class="list-group-item list-group-item-primary">The 3Month Average Trading Volume: @Html.DisplayFor(model => model.SSResponse.FinHubFinancials.Metric.The3MonthAverageTradingVolume)</li>
-                                <li class="list-group-item list-group-item-primary">The 52Week High: @Html.DisplayFor(model => model.SSResponse.FinHubFinancials.Metric.The52WeekHigh)</li>
-                                <li class="list-group-item list-group-item-primary">The52WeekLow: @Html.DisplayFor(model => model.SSResponse.FinHubFinancials.Metric.The52WeekLow)</li>
-                            </ul>
-                        </div>
-                    </div>
-
-                    <p style="padding-top:10px; text-align:center;">
-                        <a class="btn btn-primary" data-bs-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
-                            Show More Metrics
-                        </a>
-                    </p>
-                    <div class="collapse" id="collapseExample">
-                        <div class="card">
-                            <div class="row">
-                                <div class="col">
-                                    <div class="card">
-                                        <ul class="list-group list-group-flush">
-                                            <li class="list-group-item list-group-item-primary">The Book Value: @Html.DisplayFor(model => model.SSResponse.FinHubFinancials.Metric.BookValuePerShareAnnual)</li>
-                                            <li class="list-group-item list-group-item-primary">The Price to book: @Html.DisplayFor(model => model.SSResponse.FinHubFinancials.Metric.PbAnnual)</li>
-                                            <li class="list-group-item list-group-item-primary">The PE Ratio: @Html.DisplayFor(model => model.SSResponse.FinHubFinancials.Metric.PeExclExtraAnnual)</li>
-                                            <li class="list-group-item list-group-item-primary">The Asset Turnover Ratio: @Html.DisplayFor(model => model.SSResponse.FinHubFinancials.Metric.AssetTurnoverAnnual)</li>
-                                            <li class="list-group-item list-group-item-primary">The Return on Equity TTM: @Html.DisplayFor(model => model.SSResponse.FinHubFinancials.Metric.RoeTtm)</li>
-                                            <li class="list-group-item list-group-item-primary">The Return on Assets TTM: @Html.DisplayFor(model => model.SSResponse.FinHubFinancials.Metric.RoaeTtm)</li>
-                                            <li class="list-group-item list-group-item-primary">The Current Ratio Annual: @Html.DisplayFor(model => model.SSResponse.FinHubFinancials.Metric.CurrentRatioAnnual)</li>
-                                            <li class="list-group-item list-group-item-primary">The Return on Investment : @Html.DisplayFor(model => model.SSResponse.FinHubFinancials.Metric.RoiAnnual)</li>
-                                            <li class="list-group-item list-group-item-primary">The 5 Yr EPS Growth: @Html.DisplayFor(model => model.SSResponse.FinHubFinancials.Metric.EpsGrowth5Y)</li>
-                                            <li class="list-group-item list-group-item-primary">The Revenue Growth for 5 Yr : @Html.DisplayFor(model => model.SSResponse.FinHubFinancials.Metric.RevenueGrowth5Y)</li>
-                                        </ul>
-                                    </div>
-                                </div>
-                                <div class="col">
-                                    <div class="card">
-                                        <ul class="list-group list-group-flush">
-                                            <li class="list-group-item list-group-item-primary">The Price to Sales Annual: @Html.DisplayFor(model => model.SSResponse.FinHubFinancials.Metric.PsAnnual)</li>
-                                            <li class="list-group-item list-group-item-primary">The Dividend Yield TTM: @Html.DisplayFor(model => model.SSResponse.FinHubFinancials.Metric.CurrentDividendYieldTtm)</li>
-                                            <li class="list-group-item list-group-item-primary">The Average Dividend Yield 5Yr: @Html.DisplayFor(model => model.SSResponse.FinHubFinancials.Metric.DividendYield5Y)</li>
-                                            <li class="list-group-item list-group-item-primary">The EV to Free Cash Flow: @Html.DisplayFor(model => model.SSResponse.FinHubFinancials.Metric.CurrentEvFreeCashFlowAnnual)</li>
-                                            <li class="list-group-item list-group-item-primary">The Inventory Turnover ratio: @Html.DisplayFor(model => model.SSResponse.FinHubFinancials.Metric.InventoryTurnoverAnnual)</li>
-                                            <li class="list-group-item list-group-item-primary">The Receivable Turnover: @Html.DisplayFor(model => model.SSResponse.FinHubFinancials.Metric.ReceivablesTurnoverAnnual)</li>
-                                            <li class="list-group-item list-group-item-primary">The Debt to Equity Ratio in percentage: @Html.DisplayFor(model => model.SSResponse.FinHubFinancials.Metric.TotalDebtTotalEquityAnnual)</li>
-                                            <li class="list-group-item list-group-item-primary">The Gross Margin: @Html.DisplayFor(model => model.SSResponse.FinHubFinancials.Metric.GrossMarginAnnual)</li>
-                                            <li class="list-group-item list-group-item-primary">The Operating Margin annual: @Html.DisplayFor(model => model.SSResponse.FinHubFinancials.Metric.OperatingMarginAnnual)</li>
-                                            <li class="list-group-item list-group-item-primary">The Operating margin 5 Yr @Html.DisplayFor(model => model.SSResponse.FinHubFinancials.Metric.OperatingMargin5Y)</li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="row gx-5" style="padding-top:10px; padding-bottom:20px;">
-        <div class="col">
-            <div class="p-6 border .bg-transparent rounded border border-light" style="padding: 10px;">
-                <div class="row"><h5 style="text-align:center; color:white;">Twitter sentiment Data</h5></div>
-                <div class="row">
-                    <div class="col">
-                        <div class="card">
-                            <ul class="list-group list-group-flush">
-                                <li class="list-group-item list-group-item-primary">Twitter Mentions:  @Html.DisplayFor(model => model.SSResponse.TwitterMention)</li>
-                                <li class="list-group-item list-group-item-danger">Twitter Negative Mentions: @Html.DisplayFor(model => model.SSResponse.TwitterNegativeMention)</li>
-                                <li class="list-group-item list-group-item-success">Twitter Positive Mentions: @Html.DisplayFor(model => model.SSResponse.TwitterPositiveMention)</li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="col">
-                        <div class="card">
-                            <ul class="list-group list-group-flush">
-                                @if (Model.SSResponse.TwitterScore > 0)
-                                {
-                                    <li class="list-group-item list-group-item-success">Twitter Score @Html.DisplayFor(model => model.SSResponse.TwitterScore)</li>
-                                }
-                                else
-                                {
-                                    <li class="list-group-item list-group-item-danger">Twitter Score @Html.DisplayFor(model => model.SSResponse.TwitterScore)</li>
-                                }
-                                <li class="list-group-item list-group-item-success">Twitter Positive Score @Html.DisplayFor(model => model.SSResponse.TwitterPositiveScore)</li>
-                                <li class="list-group-item list-group-item-danger">Twitter Negative Score @Html.DisplayFor(model => model.SSResponse.TwitterNegativeScore)</li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="col">
-            <div class="p-6 border .bg-transparent rounded border border-light" style="padding: 10px;">
-                <div class="row"><h5 style="text-align:center; color:white;">Reddit sentiment Data</h5></div>
-                <div class="row">
-                    <div class="col">
-                        <div class="card">
-                            <ul class="list-group list-group-flush">
-                                <li class="list-group-item list-group-item-primary">Reddit Mentions:  @Html.DisplayFor(model => model.SSResponse.RedditMention)</li>
-                                <li class="list-group-item list-group-item-danger">Reddit Negative Mentions: @Html.DisplayFor(model => model.SSResponse.RedditNegativeMention)</li>
-                                <li class="list-group-item list-group-item-success">Reddit Positive Mentions: @Html.DisplayFor(model => model.SSResponse.RedditPositiveMention)</li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="col">
-                        <div class="card">
-                            <ul class="list-group list-group-flush">
-                                @if (Model.SSResponse.RedditScore > 0)
-                                {
-                                    <li class="list-group-item list-group-item-success">Reddit Score @Html.DisplayFor(model => model.SSResponse.RedditScore)</li>
-                                }
-                                else
-                                {
-                                    <li class="list-group-item list-group-item-danger">Reddit Score @Html.DisplayFor(model => model.SSResponse.RedditScore)</li>
-                                }
-                                <li class="list-group-item list-group-item-success">Reddit Positive Score @Html.DisplayFor(model => model.SSResponse.RedditPositiveScore)</li>
-                                <li class="list-group-item list-group-item-danger">Reddit Negative Score @Html.DisplayFor(model => model.SSResponse.RedditNegativeScore)</li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    @if (Model.SSResponse.InsiderChangeGraph != null)
-    {
-        <div class="row gx-5" style="padding:10px;">
-            <div class="p-12 border .bg-transparent rounded border border-light" style="padding: 10px;">
-                <img src="@Model.SSResponse.InsiderChangeGraph" style="max-height:100%; max-width:100%;  margin-left: auto;margin-right: auto; " />
-            </div>
-        </div>
-    }
-    @if (Model.SSResponse.InsiderMsprGraph != null)
-    {
-        <div class="row gx-5" style="padding:10px; padding-bottom:30px;">
-            <div class="p-12 border .bg-transparent rounded border border-light" style="padding: 10px;">
-                <img src="@Model.SSResponse.InsiderMsprGraph" style="max-height:100%; max-width:100%;  margin-left: auto;margin-right: auto; " />
-            </div>
-        </div>
-    }
-    <div class="row gx-5">
-        @if (Model.SSResponse.News != null)
+    <div class="container px-4">
+        @if (Model.SSResponse.CompanyData != null)
         {
-
-            <div class="col">
-                <div class="p-6 border .bg-transparent rounded border border-light">
-                    <div class="container">
-                        <br />
-                        <h5 style="text-align:center; color:white;">In News</h5>
-                        <br />
-                        @{
-                            int count = Model.SSResponse.News.Count();
-                            int i = 0;
-                        }
-                        @if (count != 0)
-                        {
-                            @while (i < count)
-                            {
-                                if (Model.SSResponse.News[i] != null)
-                                {
-
-                                    <div class="row justify-content-center align-items-center" style="padding-bottom: 50px;">
-
-
-                                        <div class="col-md align-self-center">
-                                            <div class="card">
-                                                @if (!Model.SSResponse.News[i].Image.Equals(""))
-                                                {
-                                                    <img src="@Model.SSResponse.News[i].Image" class="card-img-top" style="max-height:500px;" alt="...">
-                                                }
-
-                                                <div class="card-body">
-                                                    <h5 class="card-title"> @Model.SSResponse.News[i].Headline</h5>
-                                                </div>
-                                                <ul class="list-group list-group-flush">
-                                                    <li class="list-group-item">Source: @Model.SSResponse.News[i].Source</li>
-                                                    <li class="list-group-item">@Model.SSResponse.News[i].Summary</li>
-                                                </ul>
-                                                <div class="card-body">
-                                                    <a class="card-link btn btn-outline-primary" href="@Model.SSResponse.News[i].Url">Go to Source</a>
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                    </div>
-                                }
-                                i++;
-
-                            }
-                        }
-                        <form action="/News" method="get">
-                            <input type="hidden" input id="CompanySymbol" name="CompanySymbol" class="search_bar" value=@Model.SSResponse.CompanySymbol />
-                            <div class="d-flex justify-content-center" style="padding: 20px;">
-                                <input class="btn btn-outline-light" type="submit" name="submit">
-                            </div>
-                        </form>
-                    </div>
+            <div class="row gx-5" style="padding-top:10px; padding-bottom:10px;">
+                <div class="col-md px-0">
+                    <img src="@Model.SSResponse.CompanyData.Logo" class="img-fluid rounded mx-auto d-block" />
+                    <h3 style=" text-align:center; color:white;">@Model.SSResponse.CompanyData.Name</h3>
                 </div>
             </div>
-            <div class="col">
-                <div class="p-6 border .bg-transparent rounded border border-light">
-                    <div class="container">
-                        <br />
-                        <h5 style="text-align:center; color:white;">Trending Tweets</h5>
-                        <br />
-                        @{
 
-                            int TweetCount = Model.SSResponse.Tweets.Posts.Count();
-                            if (TweetCount > 15)
-                            {
-                                TweetCount = 15;
-                            }
-                            int TweetIterator = 0;
-                        }
-                        @if (TweetCount != 0)
-                        {
-                            @while (TweetIterator < TweetCount)
-                            {
+            <div class="row gx-5" style="padding:10px;">
+                <div class="col">
+                    <div class="p-6 border .bg-transparent rounded border border-light" style="padding: 10px;">
 
-                                <div class="row justify-content-center align-items-center" style="padding-bottom: 50px;">
-                                    <div class="card mb-3" style="max-width: 540px;">
-                                        <div class="row no-gutters">
-                                            @if (Model.SSResponse.Tweets.Posts[TweetIterator].Image != null)
-                                            {
-                                                <img src="@Model.SSResponse.Tweets.Posts[TweetIterator].Image" class="card-img-top" style="max-height:500px;" alt="...">
-                                            }
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item list-group-item-primary">Name:  @Model.SSResponse.CompanyData.Name</li>
+                            <li class="list-group-item list-group-item-primary">Industry:  @Model.SSResponse.CompanyData.FinnhubIndustry</li>
+                            <li class="list-group-item list-group-item-primary">Country:  @Model.SSResponse.CompanyData.Country</li>
+                            <li class="list-group-item list-group-item-primary">Currency:  @Model.SSResponse.CompanyData.Currency</li>
+                            <li class="list-group-item list-group-item-primary">Exchnage:  @Model.SSResponse.CompanyData.Exchange</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="p-6 border .bg-transparent rounded border border-light" style="padding: 10px;">
 
-                                            <div class="card-body">
-                                                <p class="card-text">@Model.SSResponse.Tweets.Posts[TweetIterator].Text</p>
-                                                <p class="card-text"><small class="text-muted">Posted By @Model.SSResponse.Tweets.Posts[TweetIterator].User.Name</small></p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                TweetIterator++;
-                            }
-                        }
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item list-group-item-primary">Website:  <a href="@Model.SSResponse.CompanyData.Weburl">@Model.SSResponse.CompanyData.Name</a></li>
+                            <li class="list-group-item list-group-item-primary">IPO:  @Model.SSResponse.CompanyData.Ipo</li>
+                            <li class="list-group-item list-group-item-primary">Market Capitilization:  @Model.SSResponse.CompanyData.MarketCapitalization</li>
+                            <li class="list-group-item list-group-item-primary">Share Outstanding:  @Model.SSResponse.CompanyData.ShareOutstanding</li>
+                            <li class="list-group-item list-group-item-primary">Ticker:  @Model.SSResponse.CompanyData.Ticker</li>
+                        </ul>
                     </div>
                 </div>
             </div>
         }
+        @if (Model.SSResponse.FinHubFinancials != null)
+        {
+            <div class="row gx-5" style="padding:10px;">
+                <div class="col">
+                    <div class="p-12 border .bg-transparent rounded border border-light" style="padding:10px; padding-bottom: 5px;">
+                        <div class="row">
+                            <h5 style="text-align:center; color:white;">Stock price metric data</h5>
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                <div class="card">
+                                    <ul class="list-group list-group-flush">
+
+                                        <li class="list-group-item list-group-item-primary">The 10Day Average Trading Volume:  @Model.SSResponse.FinHubFinancials.Metric.The10DayAverageTradingVolume</li>
+
+                                        @if (Model.SSResponse.FinHubFinancials.Metric.The13WeekPriceReturnDaily > 0)
+                                        {
+                                            <li class="list-group-item list-group-item-success">The 13Week Price Return Daily: @Model.SSResponse.FinHubFinancials.Metric.The13WeekPriceReturnDaily</li>
+                                        }
+                                        else
+                                        {
+                                            <li class="list-group-item list-group-item-danger">The 13Week Price Return Daily: @Model.SSResponse.FinHubFinancials.Metric.The13WeekPriceReturnDaily</li>
+                                        }
+                                        @if (Model.SSResponse.FinHubFinancials.Metric.The26WeekPriceReturnDaily > 0)
+                                        {
+                                            <li class="list-group-item list-group-item-success">The 26Week Price Return Daily: @Model.SSResponse.FinHubFinancials.Metric.The13WeekPriceReturnDaily</li>
+                                        }
+                                        else
+                                        {
+                                            <li class="list-group-item list-group-item-danger">The 26Week Price Return Daily: @Model.SSResponse.FinHubFinancials.Metric.The13WeekPriceReturnDaily</li>
+                                        }
+
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="col">
+                                <div class="card">
+                                    <ul class="list-group list-group-flush">
+                                        <li class="list-group-item list-group-item-primary">The 3Month Average Trading Volume: @Model.SSResponse.FinHubFinancials.Metric.The3MonthAverageTradingVolume</li>
+                                        <li class="list-group-item list-group-item-primary">The 52Week High: @Model.SSResponse.FinHubFinancials.Metric.The52WeekHigh)</li>
+                                        <li class="list-group-item list-group-item-primary">The52WeekLow: @Model.SSResponse.FinHubFinancials.Metric.The52WeekLow)</li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <p style="padding-top:10px; text-align:center;">
+                                <a class="btn btn-primary" data-bs-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
+                                    Show More Metrics
+                                </a>
+                            </p>
+                            <div class="collapse" id="collapseExample">
+                                <div class="card">
+                                    <div class="row">
+                                        <div class="col">
+                                            <div class="card">
+                                                <ul class="list-group list-group-flush">
+                                                    <li class="list-group-item list-group-item-primary">The Book Value: @Model.SSResponse.FinHubFinancials.Metric.BookValuePerShareAnnual</li>
+                                                    <li class="list-group-item list-group-item-primary">The Price to book: @Model.SSResponse.FinHubFinancials.Metric.PbAnnual</li>
+                                                    <li class="list-group-item list-group-item-primary">The PE Ratio: @Model.SSResponse.FinHubFinancials.Metric.PeExclExtraAnnual</li>
+                                                    <li class="list-group-item list-group-item-primary">The Asset Turnover Ratio: @Model.SSResponse.FinHubFinancials.Metric.AssetTurnoverAnnual</li>
+                                                    <li class="list-group-item list-group-item-primary">The Return on Equity TTM: @Model.SSResponse.FinHubFinancials.Metric.RoeTtm</li>
+                                                    <li class="list-group-item list-group-item-primary">The Return on Assets TTM: @Model.SSResponse.FinHubFinancials.Metric.RoaeTtm</li>
+                                                    <li class="list-group-item list-group-item-primary">The Current Ratio Annual: @Model.SSResponse.FinHubFinancials.Metric.CurrentRatioAnnual</li>
+                                                    <li class="list-group-item list-group-item-primary">The Return on Investment : @Model.SSResponse.FinHubFinancials.Metric.RoiAnnual</li>
+                                                    <li class="list-group-item list-group-item-primary">The 5 Yr EPS Growth: @Model.SSResponse.FinHubFinancials.Metric.EpsGrowth5Y</li>
+                                                    <li class="list-group-item list-group-item-primary">The Revenue Growth for 5 Yr : @Model.SSResponse.FinHubFinancials.Metric.RevenueGrowth5Y</li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                        <div class="col">
+                                            <div class="card">
+                                                <ul class="list-group list-group-flush">
+                                                    <li class="list-group-item list-group-item-primary">The Price to Sales Annual: @Model.SSResponse.FinHubFinancials.Metric.PsAnnual</li>
+                                                    <li class="list-group-item list-group-item-primary">The Dividend Yield TTM: @Model.SSResponse.FinHubFinancials.Metric.CurrentDividendYieldTtm</li>
+                                                    <li class="list-group-item list-group-item-primary">The Average Dividend Yield 5Yr: @Model.SSResponse.FinHubFinancials.Metric.DividendYield5Y</li>
+                                                    <li class="list-group-item list-group-item-primary">The EV to Free Cash Flow: @Model.SSResponse.FinHubFinancials.Metric.CurrentEvFreeCashFlowAnnual</li>
+                                                    <li class="list-group-item list-group-item-primary">The Inventory Turnover ratio: @Model.SSResponse.FinHubFinancials.Metric.InventoryTurnoverAnnual</li>
+                                                    <li class="list-group-item list-group-item-primary">The Receivable Turnover: @Model.SSResponse.FinHubFinancials.Metric.ReceivablesTurnoverAnnual</li>
+                                                    <li class="list-group-item list-group-item-primary">The Debt to Equity Ratio in percentage: @Model.SSResponse.FinHubFinancials.Metric.TotalDebtTotalEquityAnnual</li>
+                                                    <li class="list-group-item list-group-item-primary">The Gross Margin: @Model.SSResponse.FinHubFinancials.Metric.GrossMarginAnnual</li>
+                                                    <li class="list-group-item list-group-item-primary">The Operating Margin annual: @Model.SSResponse.FinHubFinancials.Metric.OperatingMarginAnnual</li>
+                                                    <li class="list-group-item list-group-item-primary">The Operating margin 5 Yr: @Model.SSResponse.FinHubFinancials.Metric.OperatingMargin5Y</li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+        <div class="row gx-5" style="padding-top:10px; padding-bottom:20px;">
+            <div class="col">
+                <div class="p-6 border .bg-transparent rounded border border-light" style="padding: 10px;">
+                    <div class="row"><h5 style="text-align:center; color:white;">Twitter sentiment Data</h5></div>
+                    <div class="row">
+                        <div class="col">
+                            <div class="card">
+                                <ul class="list-group list-group-flush">
+                                    <li class="list-group-item list-group-item-primary">Twitter Mentions:  @Html.DisplayFor(model => model.SSResponse.TwitterMention)</li>
+                                    <li class="list-group-item list-group-item-danger">Twitter Negative Mentions: @Html.DisplayFor(model => model.SSResponse.TwitterNegativeMention)</li>
+                                    <li class="list-group-item list-group-item-success">Twitter Positive Mentions: @Html.DisplayFor(model => model.SSResponse.TwitterPositiveMention)</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="card">
+                                <ul class="list-group list-group-flush">
+                                    @if (Model.SSResponse.TwitterScore > 0)
+                                    {
+                                        <li class="list-group-item list-group-item-success">Twitter Score @Html.DisplayFor(model => model.SSResponse.TwitterScore)</li>
+                                    }
+                                    else
+                                    {
+                                        <li class="list-group-item list-group-item-danger">Twitter Score @Html.DisplayFor(model => model.SSResponse.TwitterScore)</li>
+                                    }
+                                    <li class="list-group-item list-group-item-success">Twitter Positive Score @Html.DisplayFor(model => model.SSResponse.TwitterPositiveScore)</li>
+                                    <li class="list-group-item list-group-item-danger">Twitter Negative Score @Html.DisplayFor(model => model.SSResponse.TwitterNegativeScore)</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="p-6 border .bg-transparent rounded border border-light" style="padding: 10px;">
+                    <div class="row"><h5 style="text-align:center; color:white;">Reddit sentiment Data</h5></div>
+                    <div class="row">
+                        <div class="col">
+                            <div class="card">
+                                <ul class="list-group list-group-flush">
+                                    <li class="list-group-item list-group-item-primary">Reddit Mentions:  @Html.DisplayFor(model => model.SSResponse.RedditMention)</li>
+                                    <li class="list-group-item list-group-item-danger">Reddit Negative Mentions: @Html.DisplayFor(model => model.SSResponse.RedditNegativeMention)</li>
+                                    <li class="list-group-item list-group-item-success">Reddit Positive Mentions: @Html.DisplayFor(model => model.SSResponse.RedditPositiveMention)</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="card">
+                                <ul class="list-group list-group-flush">
+                                    @if (Model.SSResponse.RedditScore > 0)
+                                    {
+                                        <li class="list-group-item list-group-item-success">Reddit Score @Html.DisplayFor(model => model.SSResponse.RedditScore)</li>
+                                    }
+                                    else
+                                    {
+                                        <li class="list-group-item list-group-item-danger">Reddit Score @Html.DisplayFor(model => model.SSResponse.RedditScore)</li>
+                                    }
+                                    <li class="list-group-item list-group-item-success">Reddit Positive Score @Html.DisplayFor(model => model.SSResponse.RedditPositiveScore)</li>
+                                    <li class="list-group-item list-group-item-danger">Reddit Negative Score @Html.DisplayFor(model => model.SSResponse.RedditNegativeScore)</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        @if (Model.SSResponse.InsiderChangeGraph != null)
+        {
+            <div class="row gx-5" style="padding:10px;">
+                <div class="p-12 border .bg-transparent rounded border border-light" style="padding: 10px;">
+                    <img src="@Model.SSResponse.InsiderChangeGraph" style="max-height:100%; max-width:100%;  margin-left: auto;margin-right: auto; " />
+                </div>
+            </div>
+        }
+        @if (Model.SSResponse.InsiderMsprGraph != null)
+        {
+            <div class="row gx-5" style="padding:10px; padding-bottom:30px;">
+                <div class="p-12 border .bg-transparent rounded border border-light" style="padding: 10px;">
+                    <img src="@Model.SSResponse.InsiderMsprGraph" style="max-height:100%; max-width:100%;  margin-left: auto;margin-right: auto; " />
+                </div>
+            </div>
+        }
+        <div class="row gx-5">
+            @if (Model.SSResponse.News != null)
+            {
+
+                <div class="col">
+                    <div class="p-6 border .bg-transparent rounded border border-light">
+                        <div class="container">
+                            <br />
+                            <h5 style="text-align:center; color:white;">In News</h5>
+                            <br />
+                            @{
+                                int count = Model.SSResponse.News.Count();
+                                int i = 0;
+                            }
+                            @if (count != 0)
+                            {
+                                @while (i < count)
+                                {
+                                    if (Model.SSResponse.News[i] != null)
+                                    {
+
+                                        <div class="row justify-content-center align-items-center" style="padding-bottom: 50px;">
+
+
+                                            <div class="col-md align-self-center">
+                                                <div class="card">
+                                                    @if (!Model.SSResponse.News[i].Image.Equals(""))
+                                                    {
+                                                        <img src="@Model.SSResponse.News[i].Image" class="card-img-top" style="max-height:500px;" alt="...">
+                                                    }
+
+                                                    <div class="card-body">
+                                                        <h5 class="card-title"> @Model.SSResponse.News[i].Headline</h5>
+                                                    </div>
+                                                    <ul class="list-group list-group-flush">
+                                                        <li class="list-group-item">Source: @Model.SSResponse.News[i].Source</li>
+                                                        <li class="list-group-item">@Model.SSResponse.News[i].Summary</li>
+                                                    </ul>
+                                                    <div class="card-body">
+                                                        <a class="card-link btn btn-outline-primary" href="@Model.SSResponse.News[i].Url">Go to Source</a>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    }
+                                    i++;
+
+                                }
+                            }
+                            <form action="/News" method="get">
+                                <input type="hidden" input id="CompanySymbol" name="CompanySymbol" class="search_bar" value=@Model.SSResponse.CompanySymbol />
+                                <div class="d-flex justify-content-center" style="padding: 20px;">
+                                    <input class="btn btn-outline-light" type="submit" name="submit">
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                @if (Model.SSResponse.Tweets != null)
+                {
+                    <div class="col">
+                        <div class="p-6 border .bg-transparent rounded border border-light">
+                            <div class="container">
+                                <br />
+                                <h5 style="text-align:center; color:white;">Trending Tweets</h5>
+                                <br />
+                                @{
+
+                                    int TweetCount = Model.SSResponse.Tweets.Posts.Count();
+                                    if (TweetCount > 15)
+                                    {
+                                        TweetCount = 15;
+                                    }
+                                    int TweetIterator = 0;
+                                }
+                                @if (TweetCount != 0)
+                                {
+                                    @while (TweetIterator < TweetCount)
+                                    {
+
+                                        <div class="row justify-content-center align-items-center" style="padding-bottom: 50px;">
+                                            <div class="card mb-3" style="max-width: 540px;">
+                                                <div class="row no-gutters">
+                                                    @if (Model.SSResponse.Tweets.Posts[TweetIterator].Image != null)
+                                                    {
+                                                        <img src="@Model.SSResponse.Tweets.Posts[TweetIterator].Image" class="card-img-top" style="max-height:500px;" alt="...">
+                                                    }
+
+                                                    <div class="card-body">
+                                                        <p class="card-text">@Model.SSResponse.Tweets.Posts[TweetIterator].Text</p>
+                                                        <p class="card-text"><small class="text-muted">Posted By @Model.SSResponse.Tweets.Posts[TweetIterator].User.Name</small></p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        TweetIterator++;
+                                    }
+                                }
+                            </div>
+                        </div>
+                    </div>
+                }
+            }
+        </div>
     </div>
-</div>
+}
+else
+{
+    <div class="alert alert-light cntr_pg" role="alert" style="color:black;">
+        <h4 class="alert-heading">We are Sorry!</h4>
+        <p>We can't find information related to the Company Symbol "@Model.SSResponse.CompanySymbol".Please visit the following link to Search for a specific company symbol or see a list of company symbols</p>
+        <hr />
+        <a href="https://www.nasdaq.com/market-activity/stocks/screener" class="alert-link" target="_blank">Nasdaq Stock Screener</a>.
+    </div>
+}

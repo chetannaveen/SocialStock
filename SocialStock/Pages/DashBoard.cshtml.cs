@@ -25,12 +25,15 @@ namespace SocialStock.Pages
         public async Task UpdateSSResponse(string CompanySymbol)
         {
             SSResponse.CompanySymbol = CompanySymbol;
-            await GetSocialMediaSentiment(CompanySymbol);
-            await GetStockMetrics(CompanySymbol);
             await GetCompanyProfile(CompanySymbol);
-            await GetTrendingTweets(CompanySymbol);
-            await GetCompanyNews(CompanySymbol);
-            await GetInSiderSentimentCharts(CompanySymbol);
+            if (!SSResponse.IncorrectCompanySymbol)
+            {
+                await GetSocialMediaSentiment(CompanySymbol);
+                await GetStockMetrics(CompanySymbol);
+                await GetTrendingTweets(CompanySymbol);
+                await GetCompanyNews(CompanySymbol);
+                await GetInSiderSentimentCharts(CompanySymbol);
+            }
 
         }
         private async Task GetInSiderSentimentCharts(string CompanySymbol)
