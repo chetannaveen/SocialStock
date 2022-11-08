@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Newtonsoft.Json;
 using SocialStock.BasicCompanyInfo;
 using SocialStock.CompanyNews;
 using SocialStock.FhSentiment;
@@ -200,6 +201,36 @@ namespace SocialStock.Pages
                 SSResponse.RedditNegativeMention = SSResponse.RedditNegativeMention / social.Reddit.Length;
             }
 
+        }
+        public async Task<string> apiCallAsync(string CompanySymbol)
+        {
+            string responseJson = "";
+            JsonSerializerSettings SerializerNullIgnoreSetting = new JsonSerializerSettings
+            {
+                NullValueHandling = NullValueHandling.Ignore
+            };
+            JsonSerializerSettings SerializerNullIgnoreDefaultIgnoreSetting = new JsonSerializerSettings
+            {
+                NullValueHandling = NullValueHandling.Ignore,
+                DefaultValueHandling = DefaultValueHandling.Ignore
+            };
+
+            await UpdateSSResponse(CompanySymbol);
+            if (SSResponse.IncorrectCompanySymbol)
+            {
+
+                SSResponse.message = "please provide a valid Company Symbol in the query";
+                responseJson = JsonConvert.SerializeObject(SSResponse, Formatting.Indented, SerializerNullIgnoreDefaultIgnoreSetting);
+            }
+            else
+            {
+                responseJson = JsonConvert.SerializeObject(SSResponse, Formatting.Indented, SerializerNullIgnoreSetting);
+            }
+
+
+
+
+            return responseJson;
         }
     }
 }
