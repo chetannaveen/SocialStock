@@ -2,7 +2,9 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using SocialStock.BasicCompanyInfo;
 using SocialStock.CompanyNews;
+using SocialStock.FhSentiment;
 using SocialStock.Financials;
+using SocialStock.InsiderInfo;
 using SocialStock.Response;
 using SocialStock.Tweets;
 
@@ -23,11 +25,65 @@ namespace SocialStock.Pages
         public async Task UpdateSSResponse(string CompanySymbol)
         {
             SSResponse.CompanySymbol = CompanySymbol;
+            await GetSocialMediaSentiment(CompanySymbol);
             await GetStockMetrics(CompanySymbol);
             await GetCompanyProfile(CompanySymbol);
             await GetTrendingTweets(CompanySymbol);
             await GetCompanyNews(CompanySymbol);
+            await GetInSiderSentimentCharts(CompanySymbol);
 
+        }
+        private async Task GetInSiderSentimentCharts(string CompanySymbol)
+        {
+            int year = DateTime.Now.AddYears(-1).Year;
+            DateTime FromDate = new DateTime(year, 1, 1);
+
+            string url = "https://finnhub.io/api/v1/stock/insider-sentiment?symbol=" + CompanySymbol +
+                "&from=" + FromDate.ToString("yyyy-MM-dd") + "&to=" + DateTime.Now.ToString("yyyy-MM-dd")
+                + "&token=cd7l922ad3iasq2munj0cd7l922ad3iasq2munjg";
+            HttpResponseMessage responseInside = await client.GetAsync(url);
+            if (responseInside.IsSuccessStatusCode)
+            {
+                string insiderSentimentResult = await responseInside.Content.ReadAsStringAsync();
+                SSResponse.InsiderSentiment = InsiderSentiment.FromJson(insiderSentimentResult);
+                CreateCharts(SSResponse.InsiderSentiment);
+
+            }
+        }
+        private void CreateCharts(InsiderSentiment insiderSentiment)
+        {
+            List<string> labels = new List<string>();
+            List<string> dataChange = new List<string>();
+            List<string> dataMSPR = new List<string>();
+            if (insiderSentiment.Data.Length != 0)
+            {
+                foreach (Datum datum in insiderSentiment.Data)
+                {
+                    labels.Add(datum.Year.ToString() + "-" + datum.Month.ToString());
+
+                    dataChange.Add(datum.Change.ToString());
+                    dataMSPR.Add(datum.Mspr.ToString());
+                }
+                string labelString = string.Join(",", labels);
+                string dataChangeString = string.Join(",", dataChange);
+                string dataMSPRString = string.Join(",", dataMSPR);
+                SSResponse.InsiderChangeGraph = "https://quickchart.io/chart/render/zm-e57c31a5-9ff5-40f8-a807-e938f0c840ac?" + "data1=" + dataChangeString + "&labels=" + labelString;
+                SSResponse.InsiderMsprGraph = "https://quickchart.io/chart/render/zm-cc269a4a-32fa-4c84-a7be-cd610ee5c972?" + "data1=" + dataMSPRString + "&labels=" + labelString;
+
+            }
+
+        }
+        private async Task GetSocialMediaSentiment(string CompanySymbol)
+        {
+            HttpResponseMessage response = await client.GetAsync("https://finnhub.io/api/v1/stock/social-sentiment?symbol=" + CompanySymbol +
+                            "&from=" + DateTime.Today.AddMonths(-1).ToString("yyyy-MM-dd") + "&to=" + DateTime.Now.ToString("yyyy-MM-dd")
+                            + "&token=cd7l922ad3iasq2munj0cd7l922ad3iasq2munjg");
+            if (response.IsSuccessStatusCode)
+            {
+                string socialAPIResult = await response.Content.ReadAsStringAsync();
+                var social = FinHubSentiment.FromJson(socialAPIResult);
+                PostDataAnalysis(social);
+            }
         }
         private async Task GetCompanyNews(string CompanySymbol)
         {
@@ -92,6 +148,55 @@ namespace SocialStock.Pages
                 SSResponse.FinHubFinancials = FinHubFinancials.FromJson(financialAPIResult);
 
             }
+        }
+        public void PostDataAnalysis(FinHubSentiment social)
+        {
+            if (social.Twitter.Length != 0)
+            {
+                foreach (Sentiment sentiment in social.Twitter)
+                {
+                    SSResponse.TwitterMention = SSResponse.TwitterMention + sentiment.Mention;
+                    SSResponse.TwitterScore = SSResponse.TwitterScore + sentiment.Score;
+
+                    SSResponse.TwitterPositiveMention = SSResponse.TwitterPositiveMention + sentiment.PositiveMention;
+                    SSResponse.TwitterNegativeMention = SSResponse.TwitterNegativeMention + sentiment.NegativeMention;
+
+                    SSResponse.TwitterPositiveScore = SSResponse.TwitterPositiveScore + sentiment.PositiveScore;
+                    SSResponse.TwitterNegativeScore = SSResponse.TwitterNegativeScore + sentiment.NegativeScore;
+                }
+
+                SSResponse.TwitterScore = Math.Round(SSResponse.TwitterScore / social.Twitter.Length, 2);
+                SSResponse.TwitterMention = SSResponse.TwitterMention / social.Twitter.Length;
+
+                SSResponse.TwitterNegativeScore = Math.Round(SSResponse.TwitterNegativeScore / social.Twitter.Length, 2);
+                SSResponse.TwitterPositiveScore = Math.Round(SSResponse.TwitterPositiveScore / social.Twitter.Length, 2);
+
+                SSResponse.TwitterPositiveMention = SSResponse.TwitterPositiveMention / social.Twitter.Length;
+                SSResponse.TwitterNegativeMention = SSResponse.TwitterNegativeMention / social.Twitter.Length;
+            }
+            if (social.Reddit.Length != 0)
+            {
+                foreach (Sentiment sentiment in social.Reddit)
+                {
+                    SSResponse.RedditMention = SSResponse.RedditMention + sentiment.Mention;
+                    SSResponse.RedditScore = SSResponse.RedditScore + sentiment.Score;
+
+                    SSResponse.RedditPositiveMention = SSResponse.RedditPositiveMention + sentiment.PositiveMention;
+                    SSResponse.RedditNegativeMention = SSResponse.RedditNegativeMention + sentiment.NegativeMention;
+
+                    SSResponse.RedditPositiveScore = SSResponse.RedditPositiveScore + sentiment.PositiveScore;
+                    SSResponse.RedditNegativeScore = SSResponse.RedditNegativeScore + sentiment.NegativeScore;
+                }
+                SSResponse.RedditScore = Math.Round(SSResponse.RedditScore / social.Reddit.Length, 2);
+                SSResponse.RedditMention = SSResponse.RedditMention / social.Reddit.Length;
+
+                SSResponse.RedditNegativeScore = Math.Round(SSResponse.RedditNegativeScore / social.Reddit.Length, 2);
+                SSResponse.RedditPositiveScore = Math.Round(SSResponse.RedditPositiveScore / social.Reddit.Length, 2);
+
+                SSResponse.RedditPositiveMention = SSResponse.RedditPositiveMention / social.Reddit.Length;
+                SSResponse.RedditNegativeMention = SSResponse.RedditNegativeMention / social.Reddit.Length;
+            }
+
         }
     }
 }
