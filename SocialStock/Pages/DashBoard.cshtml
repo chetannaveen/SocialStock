@@ -273,7 +273,7 @@
                                                         <li class="list-group-item">@Model.SSResponse.News[i].Summary</li>
                                                     </ul>
                                                     <div class="card-body">
-                                                        <a class="card-link btn btn-outline-primary" href="@Model.SSResponse.News[i].Url">Go to Source</a>
+                                                        <a class="card-link btn btn-outline-primary" href="@Model.SSResponse.News[i].Url" target="_blank">Go to Source</a>
                                                     </div>
                                                 </div>
                                             </div>
@@ -287,7 +287,7 @@
                             <form action="/News" method="get">
                                 <input type="hidden" input id="CompanySymbol" name="CompanySymbol" class="search_bar" value=@Model.SSResponse.CompanySymbol />
                                 <div class="d-flex justify-content-center" style="padding: 20px;">
-                                    <input class="btn btn-outline-light" type="submit" name="submit">
+                                    <button type="submit" class="btn btn-outline-light">View all News</button>
                                 </div>
                             </form>
                         </div>
