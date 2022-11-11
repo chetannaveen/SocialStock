@@ -14,7 +14,7 @@ namespace SocialStock.Pages
     public class DashBoardModel : PageModel
     {
         static HttpClient client = new HttpClient();
-        public SSResponse SSResponse = new SSResponse();
+        public SSResponse SSResponse = new();
 
         public async Task<IActionResult> OnGetAsync(string CompanySymbol)
         {
@@ -27,14 +27,15 @@ namespace SocialStock.Pages
         {
             SSResponse.CompanySymbol = CompanySymbol;
             await GetCompanyProfile(CompanySymbol);
-            if (!SSResponse.IncorrectCompanySymbol)
+            if (SSResponse.IncorrectCompanySymbol)
             {
-                await GetSocialMediaSentiment(CompanySymbol);
-                await GetStockMetrics(CompanySymbol);
-                await GetTrendingTweets(CompanySymbol);
-                await GetCompanyNews(CompanySymbol);
-                await GetInSiderSentimentCharts(CompanySymbol);
+                return;
             }
+            await GetSocialMediaSentiment(CompanySymbol);
+            await GetStockMetrics(CompanySymbol);
+            await GetTrendingTweets(CompanySymbol);
+            await GetCompanyNews(CompanySymbol);
+            await GetInSiderSentimentCharts(CompanySymbol);
 
         }
         private async Task GetInSiderSentimentCharts(string CompanySymbol)
@@ -94,42 +95,39 @@ namespace SocialStock.Pages
             HttpResponseMessage responseNews = await client.GetAsync("https://finnhub.io/api/v1/company-news?symbol=" + CompanySymbol +
                 "&from=" + DateTime.Today.AddMonths(-1).ToString("yyyy-MM-dd") + "&to=" + DateTime.Now.ToString("yyyy-MM-dd") +
                 "&token=cd7l922ad3iasq2munj0cd7l922ad3iasq2munjg");
-            if (responseNews.IsSuccessStatusCode)
-            {
-                string financialNewsResult = await responseNews.Content.ReadAsStringAsync();
-                FinHubCompanyNews[] News = FinHubCompanyNews.FromJson(financialNewsResult);
+            if (!responseNews.IsSuccessStatusCode) return;
+            
+             string financialNewsResult = await responseNews.Content.ReadAsStringAsync();
+             FinHubCompanyNews[] News = FinHubCompanyNews.FromJson(financialNewsResult);
 
-                if (News.Length > 10)
-                {
-                    SSResponse.News = News[1..10];
-                }
-                else
-                {
-                    SSResponse.News = News;
-                }
-            }
+             if (News.Length > 10)
+             {
+                   SSResponse.News = News[1..10];
+             }
+             else
+             {
+                   SSResponse.News = News;
+             }
+            
         }
         private async Task GetTrendingTweets(string CompanySymbol)
         {
             HttpResponseMessage responseTweets = await client.GetAsync("https://api.social-searcher.com/v2/trends?q=" + CompanySymbol + "&key=84115b4028964b26ea46f08761beb279&network=twitter");
-            if (responseTweets.IsSuccessStatusCode)
+            if (!responseTweets.IsSuccessStatusCode) return;
+            string tweetsResult = await responseTweets.Content.ReadAsStringAsync();
+            TrendingTweets trendingTweets = TrendingTweets.FromJson(tweetsResult);
+            SSResponse.Tweets = trendingTweets;
+            if (trendingTweets.Posts.Length > 16)
             {
-                string tweetsResult = await responseTweets.Content.ReadAsStringAsync();
-                TrendingTweets trendingTweets = TrendingTweets.FromJson(tweetsResult);
-                SSResponse.Tweets = trendingTweets;
-                if (trendingTweets.Posts.Length > 16)
-                {
-                    SSResponse.Tweets.Posts = trendingTweets.Posts[1..10];
-                }
-
-
+                SSResponse.Tweets.Posts = trendingTweets.Posts[1..10];
             }
+
         }
         private async Task GetCompanyProfile(string CompanySymbol)
         {
             HttpResponseMessage responseCompanyData = await client.GetAsync("https://finnhub.io/api/v1/stock/profile2?symbol=" + CompanySymbol + "&token=cd7l922ad3iasq2munj0cd7l922ad3iasq2munjg");
-            if (responseCompanyData.IsSuccessStatusCode)
-            {
+            if (!responseCompanyData.IsSuccessStatusCode) return;
+            
                 string companyDataResult = await responseCompanyData.Content.ReadAsStringAsync();
                 if (companyDataResult != "{}")
                 {
@@ -141,7 +139,7 @@ namespace SocialStock.Pages
                 }
 
 
-            }
+            
         }
         private async Task GetStockMetrics(string CompanySymbol)
         {
