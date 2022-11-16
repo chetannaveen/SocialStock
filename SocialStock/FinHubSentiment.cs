@@ -45,7 +45,7 @@
 
     public partial class FinHubSentiment
     {
-        public static FinHubSentiment FromJson(string json) => JsonConvert.DeserializeObject<FinHubSentiment>(json, SocialStock.FhSentiment.Converter.Settings);
+        public static FinHubSentiment FromJson(string sentiment) => JsonConvert.DeserializeObject<FinHubSentiment>(sentiment, SocialStock.FhSentiment.Converter.Settings);
     }
 
     public static class Serialize

@@ -139,7 +139,7 @@ namespace SocialStock.Tweets
 
     public partial class TrendingTweets
     {
-        public static TrendingTweets FromJson(string json) => JsonConvert.DeserializeObject<TrendingTweets>(json, SocialStock.Tweets.Converter.Settings);
+        public static TrendingTweets FromJson(string trendingTweets) => JsonConvert.DeserializeObject<TrendingTweets>(trendingTweets, SocialStock.Tweets.Converter.Settings);
     }
 
     public static class Serialize

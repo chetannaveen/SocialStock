@@ -44,7 +44,7 @@ namespace SocialStock.InsiderInfo
 
     public partial class InsiderSentiment
     {
-        public static InsiderSentiment FromJson(string json) => JsonConvert.DeserializeObject<InsiderSentiment>(json, SocialStock.InsiderInfo.Converter.Settings);
+        public static InsiderSentiment FromJson(string sentiment) => JsonConvert.DeserializeObject<InsiderSentiment>(sentiment, SocialStock.InsiderInfo.Converter.Settings);
     }
 
     public static class Serialize
