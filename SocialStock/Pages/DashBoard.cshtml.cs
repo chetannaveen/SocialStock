@@ -50,8 +50,8 @@ namespace SocialStock.Pages
                 ["to"] = DateTime.Now.ToString("yyyy-MM-dd"),
                 ["token"] = "cd7l922ad3iasq2munj0cd7l922ad3iasq2munjg"
             };
-            var url = QueryHelpers.AddQueryString("https://finnhub.io/api/v1/stock/insider-sentiment", queryParams);
-            HttpResponseMessage responseInside = await client.GetAsync(url);
+            var insiderSentimentUrl = QueryHelpers.AddQueryString("https://finnhub.io/api/v1/stock/insider-sentiment", queryParams);
+            HttpResponseMessage responseInside = await client.GetAsync(insiderSentimentUrl);
             if (responseInside.IsSuccessStatusCode)
             {
                 string insiderSentimentResult = await responseInside.Content.ReadAsStringAsync();
@@ -92,8 +92,8 @@ namespace SocialStock.Pages
                 ["to"] = DateTime.Now.ToString("yyyy-MM-dd"),
                 ["token"] = "cd7l922ad3iasq2munj0cd7l922ad3iasq2munjg"
             };
-            var url = QueryHelpers.AddQueryString("https://finnhub.io/api/v1/stock/social-sentiment", queryParams);
-            HttpResponseMessage response = await client.GetAsync(url);
+            var socialMediaSentimentUrl = QueryHelpers.AddQueryString("https://finnhub.io/api/v1/stock/social-sentiment", queryParams);
+            HttpResponseMessage response = await client.GetAsync(socialMediaSentimentUrl);
             if (response.IsSuccessStatusCode)
             {
                 string socialAPIResult = await response.Content.ReadAsStringAsync();
@@ -111,8 +111,8 @@ namespace SocialStock.Pages
                 ["to"] = DateTime.Now.ToString("yyyy-MM-dd"),
                 ["token"] = "cd7l922ad3iasq2munj0cd7l922ad3iasq2munjg"
             };
-            var url = QueryHelpers.AddQueryString("https://finnhub.io/api/v1/company-news", queryParams);
-            HttpResponseMessage responseNews = await client.GetAsync(url);
+            var companyNewsUrl = QueryHelpers.AddQueryString("https://finnhub.io/api/v1/company-news", queryParams);
+            HttpResponseMessage responseNews = await client.GetAsync(companyNewsUrl);
             if (responseNews.IsSuccessStatusCode)
             {
                 string financialNewsResult = await responseNews.Content.ReadAsStringAsync();
@@ -136,8 +136,8 @@ namespace SocialStock.Pages
                 ["key"] = "84115b4028964b26ea46f08761beb279",
                 ["network"] = "twitter"
             };
-            var url = QueryHelpers.AddQueryString("https://api.social-searcher.com/v2/trends", queryParams);
-            HttpResponseMessage responseTweets = await client.GetAsync(url);
+            var trendingTweetsUrl = QueryHelpers.AddQueryString("https://api.social-searcher.com/v2/trends", queryParams);
+            HttpResponseMessage responseTweets = await client.GetAsync(trendingTweetsUrl);
             if (responseTweets.IsSuccessStatusCode)
             {
                 string tweetsResult = await responseTweets.Content.ReadAsStringAsync();
@@ -158,8 +158,8 @@ namespace SocialStock.Pages
                 ["symbol"] = CompanySymbol,
                 ["token"] = "cd7l922ad3iasq2munj0cd7l922ad3iasq2munjg"
             };
-            var url = QueryHelpers.AddQueryString("https://finnhub.io/api/v1/stock/profile2", queryParams);
-            HttpResponseMessage responseCompanyData = await client.GetAsync(url);
+            var companyProfileUrl = QueryHelpers.AddQueryString("https://finnhub.io/api/v1/stock/profile2", queryParams);
+            HttpResponseMessage responseCompanyData = await client.GetAsync(companyProfileUrl);
             if (responseCompanyData.IsSuccessStatusCode)
             {
                 string companyDataResult = await responseCompanyData.Content.ReadAsStringAsync();
@@ -183,8 +183,8 @@ namespace SocialStock.Pages
                 ["metric"] = "all",
                 ["token"] = "cd7l922ad3iasq2munj0cd7l922ad3iasq2munjg"
             };
-            var url = QueryHelpers.AddQueryString("https://finnhub.io/api/v1/stock/metric", queryParams);
-            HttpResponseMessage responseFinancials = await client.GetAsync(url);
+            var stockMetricsUrl = QueryHelpers.AddQueryString("https://finnhub.io/api/v1/stock/metric", queryParams);
+            HttpResponseMessage responseFinancials = await client.GetAsync(stockMetricsUrl);
             if (responseFinancials.IsSuccessStatusCode)
             {
                 string financialAPIResult = await responseFinancials.Content.ReadAsStringAsync();
