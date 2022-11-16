@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Newtonsoft.Json.Linq;
 using SocialStock.CompanyNews;
 
 namespace SocialStock.Pages
@@ -15,8 +16,10 @@ namespace SocialStock.Pages
             if (responseNews.IsSuccessStatusCode)
             {
                 string financialNewsResult = await responseNews.Content.ReadAsStringAsync();
-                news = FinHubCompanyNews.FromJson(financialNewsResult);
-
+                if(null != financialNewsResult && !financialNewsResult.Equals(""))
+                {
+                    news = FinHubCompanyNews.FromJson(financialNewsResult);
+                }
             }
             return Page();
         }
