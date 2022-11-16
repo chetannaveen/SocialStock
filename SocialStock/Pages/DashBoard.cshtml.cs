@@ -51,13 +51,20 @@ namespace SocialStock.Pages
                 ["token"] = "cd7l922ad3iasq2munj0cd7l922ad3iasq2munjg"
             };
             var insiderSentimentUrl = QueryHelpers.AddQueryString("https://finnhub.io/api/v1/stock/insider-sentiment", queryParams);
-            HttpResponseMessage responseInside = await client.GetAsync(insiderSentimentUrl);
-            if (responseInside.IsSuccessStatusCode)
+            try
             {
-                string insiderSentimentResult = await responseInside.Content.ReadAsStringAsync();
-                SSResponse.InsiderSentiment = InsiderSentiment.FromJson(insiderSentimentResult);
-                CreateCharts(SSResponse.InsiderSentiment);
+                HttpResponseMessage responseInside = await client.GetAsync(insiderSentimentUrl);
+                if (responseInside.IsSuccessStatusCode)
+                {
+                    string insiderSentimentResult = await responseInside.Content.ReadAsStringAsync();
+                    SSResponse.InsiderSentiment = InsiderSentiment.FromJson(insiderSentimentResult);
+                    CreateCharts(SSResponse.InsiderSentiment);
 
+                }
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("Exception occurred:", e);
             }
         }
         private void CreateCharts(InsiderSentiment insiderSentiment)
@@ -93,13 +100,20 @@ namespace SocialStock.Pages
                 ["token"] = "cd7l922ad3iasq2munj0cd7l922ad3iasq2munjg"
             };
             var socialMediaSentimentUrl = QueryHelpers.AddQueryString("https://finnhub.io/api/v1/stock/social-sentiment", queryParams);
-            HttpResponseMessage response = await client.GetAsync(socialMediaSentimentUrl);
-            if (response.IsSuccessStatusCode)
+            try
             {
-                string socialAPIResult = await response.Content.ReadAsStringAsync();
-                var social = FinHubSentiment.FromJson(socialAPIResult);
-                PostDataAnalysis(social);
+                HttpResponseMessage response = await client.GetAsync(socialMediaSentimentUrl);
+                if (response.IsSuccessStatusCode)
+                {
+                    string socialAPIResult = await response.Content.ReadAsStringAsync();
+                    var social = FinHubSentiment.FromJson(socialAPIResult);
+                    PostDataAnalysis(social);
+                }
             }
+            catch (Exception e)
+            {
+                Console.WriteLine("Exception occurred:", e);
+            }  
         }
         private async Task GetCompanyNews(string CompanySymbol)
         {
@@ -112,20 +126,27 @@ namespace SocialStock.Pages
                 ["token"] = "cd7l922ad3iasq2munj0cd7l922ad3iasq2munjg"
             };
             var companyNewsUrl = QueryHelpers.AddQueryString("https://finnhub.io/api/v1/company-news", queryParams);
-            HttpResponseMessage responseNews = await client.GetAsync(companyNewsUrl);
-            if (responseNews.IsSuccessStatusCode)
+            try
             {
-                string financialNewsResult = await responseNews.Content.ReadAsStringAsync();
-                FinHubCompanyNews[] News = FinHubCompanyNews.FromJson(financialNewsResult);
+                HttpResponseMessage responseNews = await client.GetAsync(companyNewsUrl);
+                if (responseNews.IsSuccessStatusCode)
+                {
+                    string financialNewsResult = await responseNews.Content.ReadAsStringAsync();
+                    FinHubCompanyNews[] News = FinHubCompanyNews.FromJson(financialNewsResult);
 
-                if (News.Length > 10)
-                {
-                    SSResponse.News = News[1..10];
+                    if (News.Length > 10)
+                    {
+                        SSResponse.News = News[1..10];
+                    }
+                    else
+                    {
+                        SSResponse.News = News;
+                    }
                 }
-                else
-                {
-                    SSResponse.News = News;
-                }
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("Exception occurred:", e);
             }
         }
         private async Task GetTrendingTweets(string CompanySymbol)
@@ -137,18 +158,23 @@ namespace SocialStock.Pages
                 ["network"] = "twitter"
             };
             var trendingTweetsUrl = QueryHelpers.AddQueryString("https://api.social-searcher.com/v2/trends", queryParams);
-            HttpResponseMessage responseTweets = await client.GetAsync(trendingTweetsUrl);
-            if (responseTweets.IsSuccessStatusCode)
+            try
             {
-                string tweetsResult = await responseTweets.Content.ReadAsStringAsync();
-                TrendingTweets trendingTweets = TrendingTweets.FromJson(tweetsResult);
-                SSResponse.Tweets = trendingTweets;
-                if (trendingTweets.Posts.Length > 16)
+                HttpResponseMessage responseTweets = await client.GetAsync(trendingTweetsUrl);
+                if (responseTweets.IsSuccessStatusCode)
                 {
-                    SSResponse.Tweets.Posts = trendingTweets.Posts[1..10];
+                    string tweetsResult = await responseTweets.Content.ReadAsStringAsync();
+                    TrendingTweets trendingTweets = TrendingTweets.FromJson(tweetsResult);
+                    SSResponse.Tweets = trendingTweets;
+                    if (trendingTweets.Posts.Length > 16)
+                    {
+                        SSResponse.Tweets.Posts = trendingTweets.Posts[1..10];
+                    }
                 }
-
-
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("Exception occurred:", e);
             }
         }
         private async Task GetCompanyProfile(string CompanySymbol)
@@ -159,20 +185,25 @@ namespace SocialStock.Pages
                 ["token"] = "cd7l922ad3iasq2munj0cd7l922ad3iasq2munjg"
             };
             var companyProfileUrl = QueryHelpers.AddQueryString("https://finnhub.io/api/v1/stock/profile2", queryParams);
-            HttpResponseMessage responseCompanyData = await client.GetAsync(companyProfileUrl);
-            if (responseCompanyData.IsSuccessStatusCode)
+            try
             {
-                string companyDataResult = await responseCompanyData.Content.ReadAsStringAsync();
-                if (companyDataResult != "{}")
+                HttpResponseMessage responseCompanyData = await client.GetAsync(companyProfileUrl);
+                if (responseCompanyData.IsSuccessStatusCode)
                 {
-                    SSResponse.CompanyData = CompanyData.FromJson(companyDataResult);
+                    string companyDataResult = await responseCompanyData.Content.ReadAsStringAsync();
+                    if (companyDataResult != "{}")
+                    {
+                        SSResponse.CompanyData = CompanyData.FromJson(companyDataResult);
+                    }
+                    else
+                    {
+                        SSResponse.IncorrectCompanySymbol = true;
+                    }
                 }
-                else
-                {
-                    SSResponse.IncorrectCompanySymbol = true;
-                }
-
-
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("Exception occurred:", e);
             }
         }
         private async Task GetStockMetrics(string CompanySymbol)
@@ -184,17 +215,24 @@ namespace SocialStock.Pages
                 ["token"] = "cd7l922ad3iasq2munj0cd7l922ad3iasq2munjg"
             };
             var stockMetricsUrl = QueryHelpers.AddQueryString("https://finnhub.io/api/v1/stock/metric", queryParams);
-            HttpResponseMessage responseFinancials = await client.GetAsync(stockMetricsUrl);
-            if (responseFinancials.IsSuccessStatusCode)
+            try
             {
-                string financialAPIResult = await responseFinancials.Content.ReadAsStringAsync();
-                SSResponse.FinHubFinancials = FinHubFinancials.FromJson(financialAPIResult);
+                HttpResponseMessage responseFinancials = await client.GetAsync(stockMetricsUrl);
+                if (responseFinancials.IsSuccessStatusCode)
+                {
+                    string financialAPIResult = await responseFinancials.Content.ReadAsStringAsync();
+                    SSResponse.FinHubFinancials = FinHubFinancials.FromJson(financialAPIResult);
 
+                }
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("Exception occurred:", e);
             }
         }
         public void PostDataAnalysis(FinHubSentiment social)
         {
-            if (social.Twitter.Length != 0)
+            if (social != null && social.Twitter.Length != 0)
             {
                 foreach (Sentiment sentiment in social.Twitter)
                 {
@@ -217,7 +255,7 @@ namespace SocialStock.Pages
                 SSResponse.TwitterPositiveMention = SSResponse.TwitterPositiveMention / social.Twitter.Length;
                 SSResponse.TwitterNegativeMention = SSResponse.TwitterNegativeMention / social.Twitter.Length;
             }
-            if (social.Reddit.Length != 0)
+            if (social != null && social.Reddit.Length != 0)
             {
                 foreach (Sentiment sentiment in social.Reddit)
                 {
