@@ -7,11 +7,12 @@ namespace SocialStock.Pages
     public class NewsModel : PageModel
     {
         static HttpClient client = new HttpClient();
+        DateTime dateTime = DateTime.UtcNow.Date;
         public FinHubCompanyNews[]? news { get; set; }
         public async Task<IActionResult> OnGetAsync(string CompanySymbol)
         {
 
-            HttpResponseMessage responseNews = await client.GetAsync("https://finnhub.io/api/v1/company-news?symbol=" + CompanySymbol + "&from=2022-09-01&to=2022-10-09&token=cd7l922ad3iasq2munj0cd7l922ad3iasq2munjg");
+            HttpResponseMessage responseNews = await client.GetAsync("https://finnhub.io/api/v1/company-news?symbol=" + CompanySymbol + "dateTime");
             if (responseNews.IsSuccessStatusCode)
             {
                 string financialNewsResult = await responseNews.Content.ReadAsStringAsync();

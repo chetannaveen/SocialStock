@@ -19,11 +19,11 @@ namespace SocialStock.Pages
         public async Task<IActionResult> OnGetAsync(string CompanySymbol)
         {
 
-            await UpdateSSResponse(CompanySymbol);
+            await UpdateSSResponseAsync(CompanySymbol);
 
             return Page();
         }
-        public async Task UpdateSSResponse(string CompanySymbol)
+        public async Task UpdateSSResponseAsync(string CompanySymbol)
         {
             SSResponse.CompanySymbol = CompanySymbol;
             await GetCompanyProfile(CompanySymbol);
@@ -215,7 +215,7 @@ namespace SocialStock.Pages
                 DefaultValueHandling = DefaultValueHandling.Ignore
             };
 
-            await UpdateSSResponse(CompanySymbol);
+            await UpdateSSResponseAsync(CompanySymbol);
             if (SSResponse.IncorrectCompanySymbol)
             {
 
