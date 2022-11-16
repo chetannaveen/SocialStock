@@ -57,12 +57,12 @@ namespace SocialStock.Pages
         }
         private void CreateCharts(InsiderSentiment insiderSentiment)
         {
-            List<string> labels = new List<string>();
+            var labels = new List<string>();
             List<string> dataChange = new List<string>();
             List<string> dataMSPR = new List<string>();
             if (insiderSentiment.Data.Length != 0)
             {
-                foreach (Datum datum in insiderSentiment.Data)
+                foreach (var datum in insiderSentiment.Data)
                 {
                     labels.Add(datum.Year.ToString() + "-" + datum.Month.ToString());
 
