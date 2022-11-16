@@ -409,7 +409,7 @@ namespace SocialStock.Financials
 
     public partial class FinHubFinancials
     {
-        public static FinHubFinancials FromJson(string json) => JsonConvert.DeserializeObject<FinHubFinancials>(json, SocialStock.Financials.Converter.Settings);
+        public static FinHubFinancials FromJson(string financials) => JsonConvert.DeserializeObject<FinHubFinancials>(financials, SocialStock.Financials.Converter.Settings);
     }
 
     public static class Serialize

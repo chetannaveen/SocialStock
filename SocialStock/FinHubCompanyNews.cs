@@ -48,7 +48,7 @@ namespace SocialStock.CompanyNews
    
     public partial class FinHubCompanyNews
     {
-        public static FinHubCompanyNews[] FromJson(string json) => JsonConvert.DeserializeObject<FinHubCompanyNews[]>(json, SocialStock.CompanyNews.Converter.Settings);
+        public static FinHubCompanyNews[] FromJson(string companyNews) => JsonConvert.DeserializeObject<FinHubCompanyNews[]>(companyNews, SocialStock.CompanyNews.Converter.Settings);
     }
 
     public static class Serialize
