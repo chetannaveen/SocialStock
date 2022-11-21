@@ -22,7 +22,7 @@
 @if (Model.SSResponse.IncorrectCompanySymbol == false)
 {
 
-    <div class="container px-4">
+    <div id="colorDiv" class="container px-4">
         @if (Model.SSResponse.CompanyData != null)
         {
             <div class="row gx-5 companyLogodiv">
@@ -31,7 +31,8 @@
                     <h3 class="companyName">@Model.SSResponse.CompanyData.Name</h3>
                 </div>
             </div>
-
+            <button onclick='changeme();' class="btn btn-primary rounded-pill" id="colors">Remove colors</button>
+            <button id="refresh" onClick="window.location.reload();" class="btn btn-primary rounded-pill" disabled>Apply colors</button>
             <div class="row gx-5 padding10px">
                 <div class="col">
                     <div class="p-6 border .bg-transparent rounded border border-light padding10px">
