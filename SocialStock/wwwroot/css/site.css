@@ -68,3 +68,68 @@ html {
 .gradientHeader {
     background: radial-gradient(ellipse at bottom, #0d1d31 0%, #0c0d13 100%);
 }
+.companyLogodiv {
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+.companyName {
+    text-align: center;
+    color: white;
+}
+
+.padding10px {
+    padding: 10px;
+}
+.padding20px {
+    padding: 20px;
+}
+
+.padding10pxBot30px {
+    padding: 10px;
+    padding-bottom: 30px;
+}
+
+.padding10pxBot20px {
+    padding: 10px;
+    padding-bottom: 20px;
+}
+.padTop20px {
+    padding-top: 20px;
+}
+.padding10pxBot5px {
+    padding: 10px;
+    padding-bottom: 5px;
+}
+
+.h5MyHead {
+    text-align: center;
+    color: white;
+}
+.textAlignCenter {
+    text-align: center;
+}
+.myPlot {
+    max-height: 100%;
+    max-width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.padBot50px {
+    padding-bottom: 50px;
+}
+.cardWidth {
+    max-width: 540px;
+}
+.cardImageHeight {
+    max-height: 500px;
+}
+
+.alertDiv {
+    color: black;
+}
+.newsImage {
+    min-height: 100%;
+    max-height: 100%;
+}

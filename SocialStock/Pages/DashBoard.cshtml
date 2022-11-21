@@ -25,16 +25,16 @@
     <div class="container px-4">
         @if (Model.SSResponse.CompanyData != null)
         {
-            <div class="row gx-5" style="padding-top:10px; padding-bottom:10px;">
+            <div class="row gx-5 companyLogodiv">
                 <div class="col-md px-0">
                     <img src="@Model.SSResponse.CompanyData.Logo" class="img-fluid rounded mx-auto d-block" />
-                    <h3 style=" text-align:center; color:white;">@Model.SSResponse.CompanyData.Name</h3>
+                    <h3 class="companyName">@Model.SSResponse.CompanyData.Name</h3>
                 </div>
             </div>
 
-            <div class="row gx-5" style="padding:10px;">
+            <div class="row gx-5 padding10px">
                 <div class="col">
-                    <div class="p-6 border .bg-transparent rounded border border-light" style="padding: 10px;">
+                    <div class="p-6 border .bg-transparent rounded border border-light padding10px">
 
                         <ul class="list-group list-group-flush">
                             <li class="list-group-item list-group-item-primary">Name:  @Model.SSResponse.CompanyData.Name</li>
@@ -46,7 +46,7 @@
                     </div>
                 </div>
                 <div class="col">
-                    <div class="p-6 border .bg-transparent rounded border border-light" style="padding: 10px;">
+                    <div class="p-6 border .bg-transparent rounded border border-light padding10px">
 
                         <ul class="list-group list-group-flush">
                             <li class="list-group-item list-group-item-primary">Website:  <a href="@Model.SSResponse.CompanyData.Weburl">@Model.SSResponse.CompanyData.Name</a></li>
@@ -61,11 +61,11 @@
         }
         @if (Model.SSResponse.FinHubFinancials != null)
         {
-            <div class="row gx-5" style="padding:10px;">
+            <div class="row gx-5 padding10px">
                 <div class="col">
-                    <div class="p-12 border .bg-transparent rounded border border-light" style="padding:10px; padding-bottom: 5px;">
+                    <div class="p-12 border .bg-transparent rounded border border-light padding10pxBot5px">
                         <div class="row">
-                            <h5 style="text-align:center; color:white;">Stock price metric data</h5>
+                            <h5 class="h5MyHead">Stock price metric data</h5>
                         </div>
                         <div class="row">
                             <div class="col">
@@ -104,7 +104,7 @@
                                 </div>
                             </div>
 
-                            <p style="padding-top:10px; text-align:center;">
+                            <p class="textAlignCenter padding10px">
                                 <a class="btn btn-primary" data-bs-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
                                     Show More Metrics
                                 </a>
@@ -150,10 +150,10 @@
                 </div>
             </div>
         }
-        <div class="row gx-5" style="padding-top:10px; padding-bottom:20px;">
+        <div class="row gx-5 padding10pxBot20px">
             <div class="col">
-                <div class="p-6 border .bg-transparent rounded border border-light" style="padding: 10px;">
-                    <div class="row"><h5 style="text-align:center; color:white;">Twitter sentiment Data</h5></div>
+                <div class="p-6 border .bg-transparent rounded border border-light padding10px">
+                    <div class="row"><h5 class="h5MyHead">Twitter sentiment Data</h5></div>
                     <div class="row">
                         <div class="col">
                             <div class="card">
@@ -184,8 +184,8 @@
                 </div>
             </div>
             <div class="col">
-                <div class="p-6 border .bg-transparent rounded border border-light" style="padding: 10px;">
-                    <div class="row"><h5 style="text-align:center; color:white;">Reddit sentiment Data</h5></div>
+                <div class="p-6 border .bg-transparent rounded border border-light padding10px">
+                    <div class="row"><h5 class="h5MyHead">Reddit sentiment Data</h5></div>
                     <div class="row">
                         <div class="col">
                             <div class="card">
@@ -218,17 +218,17 @@
         </div>
         @if (Model.SSResponse.InsiderChangeGraph != null)
         {
-            <div class="row gx-5" style="padding:10px;">
-                <div class="p-12 border .bg-transparent rounded border border-light" style="padding: 10px;">
-                    <img src="@Model.SSResponse.InsiderChangeGraph" style="max-height:100%; max-width:100%;  margin-left: auto;margin-right: auto; " />
+            <div class="row gx-5 padding10px">
+                <div class="p-12 border .bg-transparent rounded border border-light padding10px">
+                    <img src="@Model.SSResponse.InsiderChangeGraph" class="myPlot" />
                 </div>
             </div>
         }
         @if (Model.SSResponse.InsiderMsprGraph != null)
         {
-            <div class="row gx-5" style="padding:10px; padding-bottom:30px;">
-                <div class="p-12 border .bg-transparent rounded border border-light" style="padding: 10px;">
-                    <img src="@Model.SSResponse.InsiderMsprGraph" style="max-height:100%; max-width:100%;  margin-left: auto;margin-right: auto; " />
+            <div class="row gx-5 padding10pxBot30px">
+                <div class="p-12 border .bg-transparent rounded border border-light padding10px">
+                    <img src="@Model.SSResponse.InsiderMsprGraph" class="myPlot" />
                 </div>
             </div>
         }
@@ -240,7 +240,7 @@
                     <div class="p-6 border .bg-transparent rounded border border-light">
                         <div class="container">
                             <br />
-                            <h5 style="text-align:center; color:white;">In News</h5>
+                            <h5 class="h5MyHead">In News</h5>
                             <br />
                             @{
                                 int count = Model.SSResponse.News.Count();
@@ -253,14 +253,14 @@
                                     if (Model.SSResponse.News[i] != null)
                                     {
 
-                                        <div class="row justify-content-center align-items-center" style="padding-bottom: 50px;">
+                                        <div class="row justify-content-center align-items-center padBot50px">
 
 
                                             <div class="col-md align-self-center">
                                                 <div class="card">
                                                     @if (!Model.SSResponse.News[i].Image.Equals(""))
                                                     {
-                                                        <img src="@Model.SSResponse.News[i].Image" class="card-img-top" style="max-height:500px;" alt="...">
+                                                        <img src="@Model.SSResponse.News[i].Image" class="card-img-top cardImageHeight">
                                                     }
 
                                                     <div class="card-body">
@@ -284,7 +284,7 @@
                             }
                             <form action="/News" method="get">
                                 <input type="hidden" input id="CompanySymbol" name="CompanySymbol" class="search_bar" value=@Model.SSResponse.CompanySymbol />
-                                <div class="d-flex justify-content-center" style="padding: 20px;">
+                                <div class="d-flex justify-content-center padding20px">
                                     <button type="submit" class="btn btn-outline-light">View all News</button>
                                 </div>
                             </form>
@@ -297,7 +297,7 @@
                         <div class="p-6 border .bg-transparent rounded border border-light">
                             <div class="container">
                                 <br />
-                                <h5 style="text-align:center; color:white;">Trending Tweets</h5>
+                                <h5 class="h5MyHead">Trending Tweets</h5>
                                 <br />
                                 @{
 
@@ -313,12 +313,12 @@
                                     @while (TweetIterator < TweetCount)
                                     {
 
-                                        <div class="row justify-content-center align-items-center" style="padding-bottom: 50px;">
-                                            <div class="card mb-3" style="max-width: 540px;">
+                                        <div class="row justify-content-center align-items-center padBot50px">
+                                            <div class="card mb-3 cardWidth">
                                                 <div class="row no-gutters">
                                                     @if (Model.SSResponse.Tweets.Posts[TweetIterator].Image != null)
                                                     {
-                                                        <img src="@Model.SSResponse.Tweets.Posts[TweetIterator].Image" class="card-img-top" style="max-height:500px;" alt="...">
+                                                        <img src="@Model.SSResponse.Tweets.Posts[TweetIterator].Image" class="card-img-top cardImageHeight">
                                                     }
 
                                                     <div class="card-body">
@@ -341,7 +341,7 @@
 }
 else
 {
-    <div class="alert alert-light cntr_pg" role="alert" style="color:black;">
+    <div class="alert alert-light cntr_pg color:black" role="alert">
         <h4 class="alert-heading">We are Sorry!</h4>
         <p>We can't find information related to the Company Symbol "@Model.SSResponse.CompanySymbol".Please visit the following link to Search for a specific company symbol or see a list of company symbols</p>
         <hr />
