@@ -13,6 +13,7 @@ namespace SocialStock.Pages
 {
     public class DashBoardModel : PageModel
     {
+        private const string V = "&from=";
         static HttpClient client = new HttpClient();
         public SSResponse SSResponse = new SSResponse();
 
@@ -39,11 +40,11 @@ namespace SocialStock.Pages
         }
         private async Task GetInSiderSentimentCharts(string CompanySymbol)
         {
-            int year = DateTime.Now.AddYears(-1).Year;
+            var year = DateTime.Now.AddYears(-1).Year;
             DateTime FromDate = new DateTime(year, 1, 1);
 
             string url = "https://finnhub.io/api/v1/stock/insider-sentiment?symbol=" + CompanySymbol +
-                "&from=" + FromDate.ToString("yyyy-MM-dd") + "&to=" + DateTime.Now.ToString("yyyy-MM-dd")
+                V + FromDate.ToString("yyyy-MM-dd") + "&to=" + DateTime.Now.ToString("yyyy-MM-dd")
                 + "&token=cd7l922ad3iasq2munj0cd7l922ad3iasq2munjg";
             HttpResponseMessage responseInside = await client.GetAsync(url);
             if (responseInside.IsSuccessStatusCode)
@@ -56,12 +57,12 @@ namespace SocialStock.Pages
         }
         private void CreateCharts(InsiderSentiment insiderSentiment)
         {
-            List<string> labels = new List<string>();
+            var labels = new List<string>();
             List<string> dataChange = new List<string>();
             List<string> dataMSPR = new List<string>();
             if (insiderSentiment.Data.Length != 0)
             {
-                foreach (Datum datum in insiderSentiment.Data)
+                foreach (var datum in insiderSentiment.Data)
                 {
                     labels.Add(datum.Year.ToString() + "-" + datum.Month.ToString());
 

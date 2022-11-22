@@ -55,7 +55,7 @@ namespace SocialStock.BasicCompanyInfo
 
     public partial class CompanyData
     {
-        public static CompanyData FromJson(string json) => JsonConvert.DeserializeObject<CompanyData>(json, SocialStock.BasicCompanyInfo.Converter.Settings);
+        public static CompanyData FromJson(string CompanyInfo) => JsonConvert.DeserializeObject<CompanyData>(CompanyInfo, SocialStock.BasicCompanyInfo.Converter.Settings);
     }
 
     public static class Serialize
