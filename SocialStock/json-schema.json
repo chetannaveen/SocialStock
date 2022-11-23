@@ -1,0 +1,829 @@
+{
+  "$schema": "http://json-schema.org/draft-06/schema#",
+  "$ref": "#/definitions/InsiderSentiment",
+  "definitions": {
+    "InsiderSentiment": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "IncorrectCompanySymbol": {
+          "type": "boolean"
+        },
+        "message": {
+          "type": "string"
+        },
+        "TwitterMention": {
+          "type": "integer"
+        },
+        "TwitterPositiveMention": {
+          "type": "integer"
+        },
+        "TwitterNegativeMention": {
+          "type": "integer"
+        },
+        "TwitterScore": {
+          "type": "integer"
+        },
+        "TwitterPositiveScore": {
+          "type": "number"
+        },
+        "TwitterNegativeScore": {
+          "type": "number"
+        },
+        "RedditMention": {
+          "type": "integer"
+        },
+        "RedditPositiveMention": {
+          "type": "integer"
+        },
+        "RedditNegativeMention": {
+          "type": "integer"
+        },
+        "RedditScore": {
+          "type": "number"
+        },
+        "RedditPositiveScore": {
+          "type": "number"
+        },
+        "RedditNegativeScore": {
+          "type": "number"
+        },
+        "CompanySymbol": {
+          "type": "string"
+        },
+        "CompanyData": {
+          "$ref": "#/definitions/CompanyData"
+        },
+        "InsiderSentiment": {
+          "$ref": "#/definitions/InsiderSentimentClass"
+        },
+        "InsiderChangeGraph": {
+          "type": "string",
+          "format": "uri",
+          "qt-uri-protocols": [
+            "https"
+          ]
+        },
+        "InsiderMsprGraph": {
+          "type": "string",
+          "format": "uri",
+          "qt-uri-protocols": [
+            "https"
+          ]
+        },
+        "News": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/News"
+          }
+        },
+        "Tweets": {
+          "$ref": "#/definitions/Tweets"
+        },
+        "FinHubFinancials": {
+          "$ref": "#/definitions/FinHubFinancials"
+        }
+      },
+      "required": [],
+      "title": "InsiderSentiment"
+    },
+    "CompanyData": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "country": {
+          "type": "string"
+        },
+        "currency": {
+          "type": "string"
+        },
+        "exchange": {
+          "type": "string"
+        },
+        "finnhubIndustry": {
+          "type": "string"
+        },
+        "ipo": {
+          "type": "string"
+        },
+        "logo": {
+          "type": "string",
+          "format": "uri",
+          "qt-uri-protocols": [
+            "https"
+          ],
+          "qt-uri-extensions": [
+            ".svg"
+          ]
+        },
+        "marketCapitalization": {
+          "type": "number"
+        },
+        "name": {
+          "type": "string"
+        },
+        "phone": {
+          "type": "string"
+        },
+        "shareOutstanding": {
+          "type": "number"
+        },
+        "ticker": {
+          "type": "string"
+        },
+        "weburl": {
+          "type": "string",
+          "format": "uri",
+          "qt-uri-protocols": [
+            "https"
+          ]
+        }
+      },
+      "required": [],
+      "title": "CompanyData"
+    },
+    "FinHubFinancials": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "metric": {
+          "$ref": "#/definitions/Metric"
+        },
+        "metricType": {
+          "type": "string"
+        },
+        "series": {
+          "$ref": "#/definitions/Series"
+        },
+        "symbol": {
+          "type": "string"
+        }
+      },
+      "required": [],
+      "title": "FinHubFinancials"
+    },
+    "Metric": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "10DayAverageTradingVolume": {
+          "type": "number"
+        },
+        "13WeekPriceReturnDaily": {
+          "type": "number"
+        },
+        "26WeekPriceReturnDaily": {
+          "type": "number"
+        },
+        "3MonthAverageTradingVolume": {
+          "type": "number"
+        },
+        "52WeekHigh": {
+          "type": "number"
+        },
+        "52WeekHighDate": {
+          "type": "string"
+        },
+        "52WeekLow": {
+          "type": "number"
+        },
+        "52WeekLowDate": {
+          "type": "string"
+        },
+        "52WeekPriceReturnDaily": {
+          "type": "number"
+        },
+        "5DayPriceReturnDaily": {
+          "type": "number"
+        },
+        "assetTurnoverAnnual": {
+          "type": "number"
+        },
+        "assetTurnoverTTM": {
+          "type": "number"
+        },
+        "beta": {
+          "type": "number"
+        },
+        "bookValuePerShareAnnual": {
+          "type": "number"
+        },
+        "bookValuePerShareQuarterly": {
+          "type": "number"
+        },
+        "bookValueShareGrowth5Y": {
+          "type": "number"
+        },
+        "capitalSpendingGrowth5Y": {
+          "type": "number"
+        },
+        "cashFlowPerShareAnnual": {
+          "type": "number"
+        },
+        "cashFlowPerShareTTM": {
+          "type": "number"
+        },
+        "cashPerSharePerShareAnnual": {
+          "type": "number"
+        },
+        "cashPerSharePerShareQuarterly": {
+          "type": "number"
+        },
+        "currentDividendYieldTTM": {
+          "type": "number"
+        },
+        "currentEv/freeCashFlowAnnual": {
+          "type": "number"
+        },
+        "currentEv/freeCashFlowTTM": {
+          "type": "number"
+        },
+        "currentRatioAnnual": {
+          "type": "number"
+        },
+        "currentRatioQuarterly": {
+          "type": "number"
+        },
+        "dividendGrowthRate5Y": {
+          "type": "number"
+        },
+        "dividendPerShare5Y": {
+          "type": "number"
+        },
+        "dividendPerShareAnnual": {
+          "type": "number"
+        },
+        "dividendYield5Y": {
+          "type": "number"
+        },
+        "dividendYieldIndicatedAnnual": {
+          "type": "number"
+        },
+        "dividendsPerShareTTM": {
+          "type": "number"
+        },
+        "ebitdPerShareTTM": {
+          "type": "number"
+        },
+        "ebitdaCagr5Y": {
+          "type": "number"
+        },
+        "ebitdaInterimCagr5Y": {
+          "type": "number"
+        },
+        "epsBasicExclExtraItemsAnnual": {
+          "type": "number"
+        },
+        "epsBasicExclExtraItemsTTM": {
+          "type": "number"
+        },
+        "epsExclExtraItemsAnnual": {
+          "type": "number"
+        },
+        "epsExclExtraItemsTTM": {
+          "type": "number"
+        },
+        "epsGrowth3Y": {
+          "type": "number"
+        },
+        "epsGrowth5Y": {
+          "type": "number"
+        },
+        "epsGrowthQuarterlyYoy": {
+          "type": "number"
+        },
+        "epsGrowthTTMYoy": {
+          "type": "number"
+        },
+        "epsInclExtraItemsAnnual": {
+          "type": "number"
+        },
+        "epsInclExtraItemsTTM": {
+          "type": "number"
+        },
+        "epsNormalizedAnnual": {
+          "type": "number"
+        },
+        "focfCagr5Y": {
+          "type": "number"
+        },
+        "grossMargin5Y": {
+          "type": "number"
+        },
+        "grossMarginAnnual": {
+          "type": "number"
+        },
+        "grossMarginTTM": {
+          "type": "number"
+        },
+        "inventoryTurnoverAnnual": {
+          "type": "number"
+        },
+        "inventoryTurnoverTTM": {
+          "type": "number"
+        },
+        "longTermDebt/equityAnnual": {
+          "type": "number"
+        },
+        "longTermDebt/equityQuarterly": {
+          "type": "number"
+        },
+        "marketCapitalization": {
+          "type": "integer"
+        },
+        "monthToDatePriceReturnDaily": {
+          "type": "number"
+        },
+        "netIncomeEmployeeAnnual": {
+          "type": "integer"
+        },
+        "netIncomeEmployeeTTM": {
+          "type": "number"
+        },
+        "netInterestCoverageAnnual": {
+          "type": "number"
+        },
+        "netInterestCoverageTTM": {
+          "type": "number"
+        },
+        "netMarginGrowth5Y": {
+          "type": "number"
+        },
+        "netProfitMargin5Y": {
+          "type": "number"
+        },
+        "netProfitMarginAnnual": {
+          "type": "number"
+        },
+        "netProfitMarginTTM": {
+          "type": "number"
+        },
+        "operatingMargin5Y": {
+          "type": "number"
+        },
+        "operatingMarginAnnual": {
+          "type": "number"
+        },
+        "operatingMarginTTM": {
+          "type": "number"
+        },
+        "payoutRatioAnnual": {
+          "type": "number"
+        },
+        "payoutRatioTTM": {
+          "type": "number"
+        },
+        "pbAnnual": {
+          "type": "number"
+        },
+        "pbQuarterly": {
+          "type": "number"
+        },
+        "pcfShareTTM": {
+          "type": "number"
+        },
+        "peBasicExclExtraTTM": {
+          "type": "number"
+        },
+        "peExclExtraAnnual": {
+          "type": "number"
+        },
+        "peExclExtraTTM": {
+          "type": "number"
+        },
+        "peInclExtraTTM": {
+          "type": "number"
+        },
+        "peNormalizedAnnual": {
+          "type": "number"
+        },
+        "pfcfShareAnnual": {
+          "type": "number"
+        },
+        "pfcfShareTTM": {
+          "type": "number"
+        },
+        "pretaxMargin5Y": {
+          "type": "number"
+        },
+        "pretaxMarginAnnual": {
+          "type": "number"
+        },
+        "pretaxMarginTTM": {
+          "type": "number"
+        },
+        "priceRelativeToS&P50013Week": {
+          "type": "number"
+        },
+        "priceRelativeToS&P50026Week": {
+          "type": "number"
+        },
+        "priceRelativeToS&P5004Week": {
+          "type": "number"
+        },
+        "priceRelativeToS&P500Ytd": {
+          "type": "number"
+        },
+        "psAnnual": {
+          "type": "number"
+        },
+        "psTTM": {
+          "type": "number"
+        },
+        "ptbvAnnual": {
+          "type": "number"
+        },
+        "ptbvQuarterly": {
+          "type": "number"
+        },
+        "quickRatioAnnual": {
+          "type": "number"
+        },
+        "receivablesTurnoverAnnual": {
+          "type": "number"
+        },
+        "receivablesTurnoverTTM": {
+          "type": "number"
+        },
+        "revenueEmployeeAnnual": {
+          "type": "integer"
+        },
+        "revenueEmployeeTTM": {
+          "type": "integer"
+        },
+        "revenueGrowth3Y": {
+          "type": "number"
+        },
+        "revenueGrowth5Y": {
+          "type": "number"
+        },
+        "revenueGrowthQuarterlyYoy": {
+          "type": "number"
+        },
+        "revenueGrowthTTMYoy": {
+          "type": "number"
+        },
+        "revenuePerShareAnnual": {
+          "type": "number"
+        },
+        "revenuePerShareTTM": {
+          "type": "number"
+        },
+        "revenueShareGrowth5Y": {
+          "type": "number"
+        },
+        "roaRfy": {
+          "type": "number"
+        },
+        "roaa5Y": {
+          "type": "number"
+        },
+        "roae5Y": {
+          "type": "number"
+        },
+        "roaeTTM": {
+          "type": "number"
+        },
+        "roeRfy": {
+          "type": "number"
+        },
+        "roeTTM": {
+          "type": "number"
+        },
+        "roi5Y": {
+          "type": "number"
+        },
+        "roiAnnual": {
+          "type": "number"
+        },
+        "roiTTM": {
+          "type": "number"
+        },
+        "tangibleBookValuePerShareAnnual": {
+          "type": "number"
+        },
+        "tangibleBookValuePerShareQuarterly": {
+          "type": "number"
+        },
+        "tbvCagr5Y": {
+          "type": "number"
+        },
+        "totalDebt/totalEquityAnnual": {
+          "type": "number"
+        },
+        "totalDebt/totalEquityQuarterly": {
+          "type": "number"
+        },
+        "yearToDatePriceReturnDaily": {
+          "type": "number"
+        }
+      },
+      "required": [],
+      "title": "Metric"
+    },
+    "Series": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "annual": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "array",
+            "items": {
+              "$ref": "#/definitions/Annual"
+            }
+          }
+        },
+        "quarterly": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "array",
+            "items": {
+              "$ref": "#/definitions/Annual"
+            }
+          }
+        }
+      },
+      "required": [],
+      "title": "Series"
+    },
+    "Annual": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "period": {
+          "type": "string"
+        },
+        "v": {
+          "type": "number"
+        }
+      },
+      "required": [],
+      "title": "Annual"
+    },
+    "InsiderSentimentClass": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "data": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Datum"
+          }
+        },
+        "symbol": {
+          "type": "string"
+        }
+      },
+      "required": [],
+      "title": "InsiderSentimentClass"
+    },
+    "Datum": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "symbol": {
+          "type": "string"
+        },
+        "year": {
+          "type": "integer"
+        },
+        "month": {
+          "type": "integer"
+        },
+        "change": {
+          "type": "integer"
+        },
+        "mspr": {
+          "type": "number"
+        }
+      },
+      "required": [],
+      "title": "Datum"
+    },
+    "News": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "category": {
+          "type": "string"
+        },
+        "datetime": {
+          "type": "integer"
+        },
+        "headline": {
+          "type": "string"
+        },
+        "id": {
+          "type": "integer"
+        },
+        "image": {
+          "type": "string",
+          "qt-uri-protocols": [
+            "https"
+          ],
+          "qt-uri-extensions": [
+            ".jpg"
+          ]
+        },
+        "related": {
+          "type": "string"
+        },
+        "source": {
+          "type": "string"
+        },
+        "summary": {
+          "type": "string"
+        },
+        "url": {
+          "type": "string",
+          "format": "uri",
+          "qt-uri-protocols": [
+            "https"
+          ]
+        }
+      },
+      "required": [],
+      "title": "News"
+    },
+    "Tweets": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "meta": {
+          "$ref": "#/definitions/Meta"
+        },
+        "posts": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Post"
+          }
+        }
+      },
+      "required": [],
+      "title": "Tweets"
+    },
+    "Meta": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "http_code": {
+          "type": "integer"
+        },
+        "network": {
+          "type": "string"
+        },
+        "query_type": {
+          "type": "string"
+        }
+      },
+      "required": [],
+      "title": "Meta"
+    },
+    "Post": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "text": {
+          "type": "string"
+        },
+        "lang": {
+          "type": "string"
+        },
+        "sentiment": {
+          "type": "string"
+        },
+        "network": {
+          "type": "string"
+        },
+        "postid": {
+          "type": "string"
+        },
+        "type": {
+          "type": "string"
+        },
+        "user": {
+          "$ref": "#/definitions/User"
+        },
+        "url": {
+          "type": "string",
+          "format": "uri",
+          "qt-uri-protocols": [
+            "https"
+          ]
+        },
+        "tags": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Tag"
+          }
+        },
+        "image": {
+          "type": "string",
+          "format": "uri",
+          "qt-uri-protocols": [
+            "https"
+          ],
+          "qt-uri-extensions": [
+            ".jpg"
+          ]
+        },
+        "popularity": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Popularity"
+          }
+        },
+        "user_mentions": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Tag"
+          }
+        },
+        "posted": {
+          "type": "string"
+        },
+        "urls": {
+          "type": "array",
+          "items": {}
+        }
+      },
+      "required": [],
+      "title": "Post"
+    },
+    "Popularity": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "count": {
+          "type": "integer"
+        }
+      },
+      "required": [],
+      "title": "Popularity"
+    },
+    "Tag": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "url": {
+          "type": "string",
+          "format": "uri",
+          "qt-uri-protocols": [
+            "http",
+            "https"
+          ]
+        },
+        "text": {
+          "type": "string"
+        }
+      },
+      "required": [],
+      "title": "Tag"
+    },
+    "User": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "userid": {
+          "type": "string"
+        },
+        "url": {
+          "type": "string",
+          "format": "uri",
+          "qt-uri-protocols": [
+            "https"
+          ]
+        },
+        "name": {
+          "type": "string"
+        },
+        "image": {
+          "type": "string",
+          "format": "uri",
+          "qt-uri-protocols": [
+            "https"
+          ],
+          "qt-uri-extensions": [
+            ".jpg",
+            ".png"
+          ]
+        },
+        "location": {
+          "type": "string"
+        },
+        "influence": {
+          "$ref": "#/definitions/Popularity"
+        },
+        "description": {
+          "type": "string"
+        }
+      },
+      "required": [],
+      "title": "User"
+    }
+  }
+}
