@@ -20,82 +20,83 @@
     </div>
 </header>
 <br />
-@if(Model.news != null){
-<div class="container">
-    <div class="row gx-md-5">
-        <div class="col">
-            <div class="p-6 border .bg-transparent rounded border border-light">
-                <div class="container">
-                    <br />
+@if (Model.news != null)
+{
+    <div class="container">
+        <div class="row gx-md-5">
+            <div class="col">
+                <div class="p-6 border .bg-transparent rounded border border-light">
+                    <div class="container">
+                        <br />
                         <h3 class="h5MyHead">In News</h3>
-                    <br />
-                    @{
-                        int count = Model.news.Count();
-                        int i = 0;
-                    }
-                    @while (i < count)
-                    {
+                        <br />
+                        @{
+                            int count = Model.news.Count();
+                            int i = 0;
+                        }
+                        @while (i < count)
+                        {
 
                             <div class="row padBot50px">
-                            @for (int j = 0; j < 4; j++)
-                            {
-                                <div class="col-md-3">
-                                    <div class="card">
-                                        @if (Model.news[i].Image.Equals(""))
-                                        {
-                                            Model.news[i].Image = "https://st.depositphotos.com/1020070/3867/v/600/depositphotos_38675085-stock-illustration-business-news-paper-icon.jpg";
-                                        }
-                                            <img src="@Model.news[i].Image" class="card-img-top newsImage" >
-                                        <div class="card-body">
-                                            @if (@Model.news[i].Headline.Length > 50)
+                                @for (int j = 0; j < 4; j++)
+                                {
+                                    <div class="col-md-3">
+                                        <div class="card">
+                                            @if (Model.news[i].Image.Equals(""))
                                             {
-                                                string BriefHead = (Model.news[i].Headline.Substring(0, 50) + "...");
-
-                                                <h5 class="card-title"> @BriefHead</h5>
+                                                Model.news[i].Image = "https://st.depositphotos.com/1020070/3867/v/600/depositphotos_38675085-stock-illustration-business-news-paper-icon.jpg";
                                             }
-                                            else
-                                            {
-                                                <h5 class="card-title"> @Model.news[i].Headline</h5>
-                                            }
+                                            <img src="@Model.news[i].Image" class="card-img-top newsImage">
+                                            <div class="card-body">
+                                                @if (@Model.news[i].Headline.Length > 50)
+                                                {
+                                                    string BriefHead = (Model.news[i].Headline.Substring(0, 50) + "...");
 
-                                        </div>
-                                        <ul class="list-group list-group-flush">
-                                            <li class="list-group-item">Source: @Model.news[i].Source</li>
-                                            @if (@Model.news[i].Summary.Length > 100)
-                                            {
-                                                string BriefSummary = (Model.news[i].Summary.Substring(0, 100) + "...");
+                                                    <h5 class="card-title"> @BriefHead</h5>
+                                                }
+                                                else
+                                                {
+                                                    <h5 class="card-title"> @Model.news[i].Headline</h5>
+                                                }
 
-                                                <li class="list-group-item">@BriefSummary</li>
-                                            }
-                                            else
-                                            {
-                                                <li class="list-group-item">@Model.news[i].Summary</li>
-                                            }
+                                            </div>
+                                            <ul class="list-group list-group-flush">
+                                                <li class="list-group-item">Source: @Model.news[i].Source</li>
+                                                @if (@Model.news[i].Summary.Length > 100)
+                                                {
+                                                    string BriefSummary = (Model.news[i].Summary.Substring(0, 100) + "...");
 
-                                        </ul>
-                                        <div class="card-body">
+                                                    <li class="list-group-item">@BriefSummary</li>
+                                                }
+                                                else
+                                                {
+                                                    <li class="list-group-item">@Model.news[i].Summary</li>
+                                                }
+
+                                            </ul>
+                                            <div class="card-body">
                                                 <a class="card-link btn btn-outline-primary" href="@Model.news[i].Url" target="_blank">Go to Source</a>
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
-                                <br />
-                                i = i + 1;
-                                if (i == count)
-                                {
-                                    break;
+                                    <br />
+                                    i = i + 1;
+                                    if (i == count)
+                                    {
+                                        break;
+                                    }
+
                                 }
 
-                            }
-
-                        </div>
+                            </div>
 
 
 
 
-                    }
+                        }
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
 }

@@ -38,11 +38,11 @@
                     <div class="p-6 border .bg-transparent rounded border border-light padding10px">
 
                         <ul class="list-group list-group-flush">
-                            <li class="list-group-item list-group-item-primary">Name:  @Model.SSResponse.CompanyData.Name</li>
-                            <li class="list-group-item list-group-item-primary">Industry:  @Model.SSResponse.CompanyData.FinnhubIndustry</li>
-                            <li class="list-group-item list-group-item-primary">Country:  @Model.SSResponse.CompanyData.Country</li>
-                            <li class="list-group-item list-group-item-primary">Currency:  @Model.SSResponse.CompanyData.Currency</li>
-                            <li class="list-group-item list-group-item-primary">Exchnage:  @Model.SSResponse.CompanyData.Exchange</li>
+                            <li class="list-group-item list-group-item-primary fw-bold fw-bold">Name:  @Model.SSResponse.CompanyData.Name</li>
+                            <li class="list-group-item list-group-item-primary fw-bold">Industry:  @Model.SSResponse.CompanyData.FinnhubIndustry</li>
+                            <li class="list-group-item list-group-item-primary fw-bold">Country:  @Model.SSResponse.CompanyData.Country</li>
+                            <li class="list-group-item list-group-item-primary fw-bold">Currency:  @Model.SSResponse.CompanyData.Currency</li>
+                            <li class="list-group-item list-group-item-primary fw-bold">Exchnage:  @Model.SSResponse.CompanyData.Exchange</li>
                         </ul>
                     </div>
                 </div>
@@ -50,11 +50,11 @@
                     <div class="p-6 border .bg-transparent rounded border border-light padding10px">
 
                         <ul class="list-group list-group-flush">
-                            <li class="list-group-item list-group-item-primary">Website:  <a href="@Model.SSResponse.CompanyData.Weburl">@Model.SSResponse.CompanyData.Name</a></li>
-                            <li class="list-group-item list-group-item-primary">IPO:  @Model.SSResponse.CompanyData.Ipo</li>
-                            <li class="list-group-item list-group-item-primary">Market Capitilization:  @Model.SSResponse.CompanyData.MarketCapitalization</li>
-                            <li class="list-group-item list-group-item-primary">Share Outstanding:  @Model.SSResponse.CompanyData.ShareOutstanding</li>
-                            <li class="list-group-item list-group-item-primary">Ticker:  @Model.SSResponse.CompanyData.Ticker</li>
+                            <li class="list-group-item list-group-item-primary fw-bold">Website:  <a href="@Model.SSResponse.CompanyData.Weburl">@Model.SSResponse.CompanyData.Name</a></li>
+                            <li class="list-group-item list-group-item-primary fw-bold">IPO:  @Model.SSResponse.CompanyData.Ipo</li>
+                            <li class="list-group-item list-group-item-primary fw-bold">Market Capitilization:  @Model.SSResponse.CompanyData.MarketCapitalization</li>
+                            <li class="list-group-item list-group-item-primary fw-bold">Share Outstanding:  @Model.SSResponse.CompanyData.ShareOutstanding</li>
+                            <li class="list-group-item list-group-item-primary fw-bold">Ticker:  @Model.SSResponse.CompanyData.Ticker</li>
                         </ul>
                     </div>
                 </div>
@@ -73,23 +73,23 @@
                                 <div class="card">
                                     <ul class="list-group list-group-flush">
 
-                                        <li class="list-group-item list-group-item-primary">The 10Day Average Trading Volume:  @Model.SSResponse.FinHubFinancials.Metric.The10DayAverageTradingVolume</li>
+                                        <li class="list-group-item list-group-item-primary fw-bold">The 10Day Average Trading Volume:  @Model.SSResponse.FinHubFinancials.Metric.The10DayAverageTradingVolume</li>
 
                                         @if (Model.SSResponse.FinHubFinancials.Metric.The13WeekPriceReturnDaily > 0)
                                         {
-                                            <li class="list-group-item list-group-item-success">The 13Week Price Return Daily: @Model.SSResponse.FinHubFinancials.Metric.The13WeekPriceReturnDaily</li>
+                                            <li class="list-group-item list-group-item-success fw-bold">The 13Week Price Return Daily: @Model.SSResponse.FinHubFinancials.Metric.The13WeekPriceReturnDaily</li>
                                         }
                                         else
                                         {
-                                            <li class="list-group-item list-group-item-danger">The 13Week Price Return Daily: @Model.SSResponse.FinHubFinancials.Metric.The13WeekPriceReturnDaily</li>
+                                            <li class="list-group-item list-group-item-danger fw-bold">The 13Week Price Return Daily: @Model.SSResponse.FinHubFinancials.Metric.The13WeekPriceReturnDaily</li>
                                         }
                                         @if (Model.SSResponse.FinHubFinancials.Metric.The26WeekPriceReturnDaily > 0)
                                         {
-                                            <li class="list-group-item list-group-item-success">The 26Week Price Return Daily: @Model.SSResponse.FinHubFinancials.Metric.The13WeekPriceReturnDaily</li>
+                                            <li class="list-group-item list-group-item-success fw-bold">The 26Week Price Return Daily: @Model.SSResponse.FinHubFinancials.Metric.The13WeekPriceReturnDaily</li>
                                         }
                                         else
                                         {
-                                            <li class="list-group-item list-group-item-danger">The 26Week Price Return Daily: @Model.SSResponse.FinHubFinancials.Metric.The13WeekPriceReturnDaily</li>
+                                            <li class="list-group-item list-group-item-danger fw-bold">The 26Week Price Return Daily: @Model.SSResponse.FinHubFinancials.Metric.The13WeekPriceReturnDaily</li>
                                         }
 
                                     </ul>
@@ -98,9 +98,9 @@
                             <div class="col">
                                 <div class="card">
                                     <ul class="list-group list-group-flush">
-                                        <li class="list-group-item list-group-item-primary">The 3Month Average Trading Volume: @Model.SSResponse.FinHubFinancials.Metric.The3MonthAverageTradingVolume</li>
-                                        <li class="list-group-item list-group-item-primary">The 52Week High: @Model.SSResponse.FinHubFinancials.Metric.The52WeekHigh</li>
-                                        <li class="list-group-item list-group-item-primary">The 52Week Low: @Model.SSResponse.FinHubFinancials.Metric.The52WeekLow</li>
+                                        <li class="list-group-item list-group-item-primary fw-bold">The 3Month Average Trading Volume: @Model.SSResponse.FinHubFinancials.Metric.The3MonthAverageTradingVolume</li>
+                                        <li class="list-group-item list-group-item-primary fw-bold">The 52Week High: @Model.SSResponse.FinHubFinancials.Metric.The52WeekHigh</li>
+                                        <li class="list-group-item list-group-item-primary fw-bold">The 52Week Low: @Model.SSResponse.FinHubFinancials.Metric.The52WeekLow</li>
                                     </ul>
                                 </div>
                             </div>
@@ -111,40 +111,40 @@
                                 </a>
                             </p>
                             <div class="collapse" id="collapseExample">
-                                    <div class="row">
-                                        <div class="col">
-                                            <div class="card">
-                                                <ul class="list-group list-group-flush">
-                                                    <li class="list-group-item list-group-item-primary">The Book Value: @Model.SSResponse.FinHubFinancials.Metric.BookValuePerShareAnnual</li>
-                                                    <li class="list-group-item list-group-item-primary">The Price to book: @Model.SSResponse.FinHubFinancials.Metric.PbAnnual</li>
-                                                    <li class="list-group-item list-group-item-primary">The PE Ratio: @Model.SSResponse.FinHubFinancials.Metric.PeExclExtraAnnual</li>
-                                                    <li class="list-group-item list-group-item-primary">The Asset Turnover Ratio: @Model.SSResponse.FinHubFinancials.Metric.AssetTurnoverAnnual</li>
-                                                    <li class="list-group-item list-group-item-primary">The Return on Equity TTM: @Model.SSResponse.FinHubFinancials.Metric.RoeTtm</li>
-                                                    <li class="list-group-item list-group-item-primary">The Return on Assets TTM: @Model.SSResponse.FinHubFinancials.Metric.RoaeTtm</li>
-                                                    <li class="list-group-item list-group-item-primary">The Current Ratio Annual: @Model.SSResponse.FinHubFinancials.Metric.CurrentRatioAnnual</li>
-                                                    <li class="list-group-item list-group-item-primary">The Return on Investment : @Model.SSResponse.FinHubFinancials.Metric.RoiAnnual</li>
-                                                    <li class="list-group-item list-group-item-primary">The 5 Yr EPS Growth: @Model.SSResponse.FinHubFinancials.Metric.EpsGrowth5Y</li>
-                                                    <li class="list-group-item list-group-item-primary">The Revenue Growth for 5 Yr : @Model.SSResponse.FinHubFinancials.Metric.RevenueGrowth5Y</li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                        <div class="col">
-                                            <div class="card">
-                                                <ul class="list-group list-group-flush">
-                                                    <li class="list-group-item list-group-item-primary">The Price to Sales Annual: @Model.SSResponse.FinHubFinancials.Metric.PsAnnual</li>
-                                                    <li class="list-group-item list-group-item-primary">The Dividend Yield TTM: @Model.SSResponse.FinHubFinancials.Metric.CurrentDividendYieldTtm</li>
-                                                    <li class="list-group-item list-group-item-primary">The Average Dividend Yield 5Yr: @Model.SSResponse.FinHubFinancials.Metric.DividendYield5Y</li>
-                                                    <li class="list-group-item list-group-item-primary">The EV to Free Cash Flow: @Model.SSResponse.FinHubFinancials.Metric.CurrentEvFreeCashFlowAnnual</li>
-                                                    <li class="list-group-item list-group-item-primary">The Inventory Turnover ratio: @Model.SSResponse.FinHubFinancials.Metric.InventoryTurnoverAnnual</li>
-                                                    <li class="list-group-item list-group-item-primary">The Receivable Turnover: @Model.SSResponse.FinHubFinancials.Metric.ReceivablesTurnoverAnnual</li>
-                                                    <li class="list-group-item list-group-item-primary">The Debt to Equity Ratio in percentage: @Model.SSResponse.FinHubFinancials.Metric.TotalDebtTotalEquityAnnual</li>
-                                                    <li class="list-group-item list-group-item-primary">The Gross Margin: @Model.SSResponse.FinHubFinancials.Metric.GrossMarginAnnual</li>
-                                                    <li class="list-group-item list-group-item-primary">The Operating Margin annual: @Model.SSResponse.FinHubFinancials.Metric.OperatingMarginAnnual</li>
-                                                    <li class="list-group-item list-group-item-primary">The Operating margin 5 Yr: @Model.SSResponse.FinHubFinancials.Metric.OperatingMargin5Y</li>
-                                                </ul>
-                                            </div>
+                                <div class="row">
+                                    <div class="col">
+                                        <div class="card">
+                                            <ul class="list-group list-group-flush">
+                                                <li class="list-group-item list-group-item-primary fw-bold">The Book Value: @Model.SSResponse.FinHubFinancials.Metric.BookValuePerShareAnnual</li>
+                                                <li class="list-group-item list-group-item-primary fw-bold">The Price to book: @Model.SSResponse.FinHubFinancials.Metric.PbAnnual</li>
+                                                <li class="list-group-item list-group-item-primary fw-bold">The PE Ratio: @Model.SSResponse.FinHubFinancials.Metric.PeExclExtraAnnual</li>
+                                                <li class="list-group-item list-group-item-primary fw-bold">The Asset Turnover Ratio: @Model.SSResponse.FinHubFinancials.Metric.AssetTurnoverAnnual</li>
+                                                <li class="list-group-item list-group-item-primary fw-bold">The Return on Equity TTM: @Model.SSResponse.FinHubFinancials.Metric.RoeTtm</li>
+                                                <li class="list-group-item list-group-item-primary fw-bold">The Return on Assets TTM: @Model.SSResponse.FinHubFinancials.Metric.RoaeTtm</li>
+                                                <li class="list-group-item list-group-item-primary fw-bold">The Current Ratio Annual: @Model.SSResponse.FinHubFinancials.Metric.CurrentRatioAnnual</li>
+                                                <li class="list-group-item list-group-item-primary fw-bold">The Return on Investment : @Model.SSResponse.FinHubFinancials.Metric.RoiAnnual</li>
+                                                <li class="list-group-item list-group-item-primary fw-bold">The 5 Yr EPS Growth: @Model.SSResponse.FinHubFinancials.Metric.EpsGrowth5Y</li>
+                                                <li class="list-group-item list-group-item-primary fw-bold">The Revenue Growth for 5 Yr : @Model.SSResponse.FinHubFinancials.Metric.RevenueGrowth5Y</li>
+                                            </ul>
                                         </div>
                                     </div>
+                                    <div class="col">
+                                        <div class="card">
+                                            <ul class="list-group list-group-flush">
+                                                <li class="list-group-item list-group-item-primary fw-bold">The Price to Sales Annual: @Model.SSResponse.FinHubFinancials.Metric.PsAnnual</li>
+                                                <li class="list-group-item list-group-item-primary fw-bold">The Dividend Yield TTM: @Model.SSResponse.FinHubFinancials.Metric.CurrentDividendYieldTtm</li>
+                                                <li class="list-group-item list-group-item-primary fw-bold">The Average Dividend Yield 5Yr: @Model.SSResponse.FinHubFinancials.Metric.DividendYield5Y</li>
+                                                <li class="list-group-item list-group-item-primary fw-bold">The EV to Free Cash Flow: @Model.SSResponse.FinHubFinancials.Metric.CurrentEvFreeCashFlowAnnual</li>
+                                                <li class="list-group-item list-group-item-primary fw-bold">The Inventory Turnover ratio: @Model.SSResponse.FinHubFinancials.Metric.InventoryTurnoverAnnual</li>
+                                                <li class="list-group-item list-group-item-primary fw-bold">The Receivable Turnover: @Model.SSResponse.FinHubFinancials.Metric.ReceivablesTurnoverAnnual</li>
+                                                <li class="list-group-item list-group-item-primary fw-bold">The Debt to Equity Ratio in percentage: @Model.SSResponse.FinHubFinancials.Metric.TotalDebtTotalEquityAnnual</li>
+                                                <li class="list-group-item list-group-item-primary fw-bold">The Gross Margin: @Model.SSResponse.FinHubFinancials.Metric.GrossMarginAnnual</li>
+                                                <li class="list-group-item list-group-item-primary fw-bold">The Operating Margin annual: @Model.SSResponse.FinHubFinancials.Metric.OperatingMarginAnnual</li>
+                                                <li class="list-group-item list-group-item-primary fw-bold">The Operating margin 5 Yr: @Model.SSResponse.FinHubFinancials.Metric.OperatingMargin5Y</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -159,9 +159,9 @@
                         <div class="col">
                             <div class="card">
                                 <ul class="list-group list-group-flush">
-                                    <li class="list-group-item list-group-item-primary">Twitter Mentions:  @Html.DisplayFor(model => model.SSResponse.TwitterMention)</li>
-                                    <li class="list-group-item list-group-item-danger">Twitter Negative Mentions: @Html.DisplayFor(model => model.SSResponse.TwitterNegativeMention)</li>
-                                    <li class="list-group-item list-group-item-success">Twitter Positive Mentions: @Html.DisplayFor(model => model.SSResponse.TwitterPositiveMention)</li>
+                                    <li class="list-group-item list-group-item-primary fw-bold">Twitter Mentions:  @Html.DisplayFor(model => model.SSResponse.TwitterMention)</li>
+                                    <li class="list-group-item list-group-item-danger fw-bold">Negative Mentions: @Html.DisplayFor(model => model.SSResponse.TwitterNegativeMention)</li>
+                                    <li class="list-group-item list-group-item-success fw-bold">Positive Mentions: @Html.DisplayFor(model => model.SSResponse.TwitterPositiveMention)</li>
                                 </ul>
                             </div>
                         </div>
@@ -170,14 +170,14 @@
                                 <ul class="list-group list-group-flush">
                                     @if (Model.SSResponse.TwitterScore > 0)
                                     {
-                                        <li class="list-group-item list-group-item-success">Twitter Score @Html.DisplayFor(model => model.SSResponse.TwitterScore)</li>
+                                        <li class="list-group-item list-group-item-success fw-bold">Twitter Score @Html.DisplayFor(model => model.SSResponse.TwitterScore)</li>
                                     }
                                     else
                                     {
-                                        <li class="list-group-item list-group-item-danger">Twitter Score @Html.DisplayFor(model => model.SSResponse.TwitterScore)</li>
+                                        <li class="list-group-item list-group-item-danger fw-bold">Twitter Score @Html.DisplayFor(model => model.SSResponse.TwitterScore)</li>
                                     }
-                                    <li class="list-group-item list-group-item-success">Twitter Positive Score @Html.DisplayFor(model => model.SSResponse.TwitterPositiveScore)</li>
-                                    <li class="list-group-item list-group-item-danger">Twitter Negative Score @Html.DisplayFor(model => model.SSResponse.TwitterNegativeScore)</li>
+                                    <li class="list-group-item list-group-item-success fw-bold">Positive Score @Html.DisplayFor(model => model.SSResponse.TwitterPositiveScore)</li>
+                                    <li class="list-group-item list-group-item-danger fw-bold">Negative Score @Html.DisplayFor(model => model.SSResponse.TwitterNegativeScore)</li>
                                 </ul>
                             </div>
                         </div>
@@ -191,9 +191,9 @@
                         <div class="col">
                             <div class="card">
                                 <ul class="list-group list-group-flush">
-                                    <li class="list-group-item list-group-item-primary">Reddit Mentions:  @Html.DisplayFor(model => model.SSResponse.RedditMention)</li>
-                                    <li class="list-group-item list-group-item-danger">Reddit Negative Mentions: @Html.DisplayFor(model => model.SSResponse.RedditNegativeMention)</li>
-                                    <li class="list-group-item list-group-item-success">Reddit Positive Mentions: @Html.DisplayFor(model => model.SSResponse.RedditPositiveMention)</li>
+                                    <li class="list-group-item list-group-item-primary fw-bold">Reddit Mentions:  @Html.DisplayFor(model => model.SSResponse.RedditMention)</li>
+                                    <li class="list-group-item list-group-item-danger fw-bold">Negative Mentions: @Html.DisplayFor(model => model.SSResponse.RedditNegativeMention)</li>
+                                    <li class="list-group-item list-group-item-success fw-bold">Positive Mentions: @Html.DisplayFor(model => model.SSResponse.RedditPositiveMention)</li>
                                 </ul>
                             </div>
                         </div>
@@ -202,14 +202,14 @@
                                 <ul class="list-group list-group-flush">
                                     @if (Model.SSResponse.RedditScore > 0)
                                     {
-                                        <li class="list-group-item list-group-item-success">Reddit Score @Html.DisplayFor(model => model.SSResponse.RedditScore)</li>
+                                        <li class="list-group-item list-group-item-success fw-bold">Reddit Score @Html.DisplayFor(model => model.SSResponse.RedditScore)</li>
                                     }
                                     else
                                     {
-                                        <li class="list-group-item list-group-item-danger">Reddit Score @Html.DisplayFor(model => model.SSResponse.RedditScore)</li>
+                                        <li class="list-group-item list-group-item-danger fw-bold">Reddit Score @Html.DisplayFor(model => model.SSResponse.RedditScore)</li>
                                     }
-                                    <li class="list-group-item list-group-item-success">Reddit Positive Score @Html.DisplayFor(model => model.SSResponse.RedditPositiveScore)</li>
-                                    <li class="list-group-item list-group-item-danger">Reddit Negative Score @Html.DisplayFor(model => model.SSResponse.RedditNegativeScore)</li>
+                                    <li class="list-group-item list-group-item-success fw-bold">Positive Score @Html.DisplayFor(model => model.SSResponse.RedditPositiveScore)</li>
+                                    <li class="list-group-item list-group-item-danger fw-bold">Negative Score @Html.DisplayFor(model => model.SSResponse.RedditNegativeScore)</li>
                                 </ul>
                             </div>
                         </div>
@@ -286,7 +286,7 @@
                             <form action="/News" method="get">
                                 <input type="hidden" input id="CompanySymbol" name="CompanySymbol" class="search_bar" value=@Model.SSResponse.CompanySymbol />
                                 <div class="d-flex justify-content-center padding20px">
-                                    <button type="submit" class="btn btn-outline-light">View all News</button>
+                                    <button type="submit" class="btn btn-light">View all News</button>
                                 </div>
                             </form>
                         </div>
