@@ -1,0 +1,104 @@
+﻿@page
+@model SocialStock.Pages.MoodsModel
+@{
+}
+<header class="py-3 mb-3 border-bottom sticky-top gradientHeader">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-2 px-0">
+                <a href="/" class="link-dark text-decoration-none" aria-expanded="false">
+                    <img src="~/SocialStockLogo.png" class="img-fluid" />
+                </a>
+            </div>
+
+            <div class="d-flex align-items-center col-10">
+                <form action="/DashBoard" method="get" class="w-100 me-3">
+                    <input type="text" input id="CompanySymbol" name="CompanySymbol" class="form-control" placeholder="Search..." aria-label="Search">
+                </form>
+            </div>
+        </div>
+    </div>
+</header>
+<br />
+@if (Model.moods != null)
+{
+<div class="container">
+    <div class="row gx-md-5">
+        <div class="col">
+            <div class="p-6 border .bg-transparent rounded border border-light">
+                <div class="container">
+                    <br />
+                    <h3 class="h5MyHead">Business News</h3>
+                    <br />
+                    @{
+                            int count = Model.moods.Results.Count();
+                            int i = 0;
+                    }
+                    @while (i < count)
+                        {
+
+                    <div class="row padBot50px">
+                        @for (int j = 0; j < 4; j++)
+                                {
+                        <div class="col-md-3">
+                            <div class="card">
+                                @if (Model.moods.Results[i].Multimedia == null)
+                                            {
+                                <img src="https://st.depositphotos.com/1020070/3867/v/600/depositphotos_38675085-stock-illustration-business-news-paper-icon.jpg" class="card-img-top newsImage">
+                                            }
+                                            else{
+                                <img src="@Model.moods.Results[i].Multimedia[0].Url" class="card-img-top newsImage">
+                                            }
+                                <div class="card-body">
+                                    @if (@Model.moods.Results[i].Title.Length > 50)
+                                                {
+                                                    string BriefHead = (Model.moods.Results[i].Title.Substring(0, 50) + "...");
+
+                                    <h5 class="card-title"> @BriefHead</h5>
+                                                }
+                                                else
+                                                {
+                                    <h5 class="card-title"> @Model.moods.Results[i].Title</h5>
+                                                }
+
+                                </div>
+                                <ul class="list-group list-group-flush">
+                                    <li class="list-group-item">Source: @Model.moods.Results[i].Byline</li>
+                                    @if (@Model.moods.Results[i].Abstract.Length > 100)
+                                                {
+                                                    string BriefSummary = (Model.moods.Results[i].Abstract.Substring(0, 100) + "...");
+
+                                    <li class="list-group-item">@BriefSummary</li>
+                                                }
+                                                else
+                                                {
+                                    <li class="list-group-item">@Model.moods.Results[i].Abstract</li>
+                                                }
+
+                                </ul>
+                                <div class="card-body">
+                                    <a class="card-link btn btn-outline-primary" href="@Model.moods.Results[i].ShortUrl" target="_blank">Go to Source</a>
+                                </div>
+                            </div>
+                        </div>
+                        <br />
+                                    i = i + 1;
+                                    if (i == count)
+                                    {
+                                        break;
+                                    }
+
+                                }
+
+                    </div>
+
+
+
+
+                        }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+}
